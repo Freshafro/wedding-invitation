@@ -44,8 +44,7 @@ export default function Home() {
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
             <strong>Rosa Marie Ngo Um</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
             <strong>Josee Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
-            <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le 
-            <strong>15 août 2026</strong>.
+            <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <strong>15 août 2026</strong>.
           </>
         ),
         scheduleTitle: "Programme de la journée",
@@ -67,25 +66,22 @@ export default function Home() {
   const t = copy[locale];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#fefcf5] px-5 py-10 text-zinc-900 sm:px-8">
-      <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-amber-200/35 blur-3xl" />
-      <div className="pointer-events-none absolute -right-28 top-1/3 h-80 w-80 rounded-full bg-rose-200/30 blur-3xl" />
-
+    <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
       <div className="relative mx-auto w-full max-w-3xl space-y-10">
         <section className="space-y-10">
           <div className="flex justify-end">
-            <div className="inline-flex overflow-hidden rounded-full border border-amber-300 bg-white/80 text-xs font-semibold uppercase tracking-[0.12em]">
+            <div className="inline-flex overflow-hidden rounded-full border text-xs font-semibold uppercase tracking-[0.12em]">
               <button
                 type="button"
                 onClick={() => setLocale("en")}
-                className={`px-4 py-2 transition ${locale === "en" ? "bg-amber-700 text-white" : "text-amber-800 hover:bg-amber-50"}`}
+                className={`px-4 py-2 transition ${locale === "en" ? "underline" : ""}`}
               >
                 EN
               </button>
               <button
                 type="button"
                 onClick={() => setLocale("fr")}
-                className={`px-4 py-2 transition ${locale === "fr" ? "bg-amber-700 text-white" : "text-amber-800 hover:bg-amber-50"}`}
+                className={`px-4 py-2 transition ${locale === "fr" ? "underline" : ""}`}
               >
                 FR
               </button>
@@ -93,60 +89,60 @@ export default function Home() {
           </div>
 
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-amber-700">{t.heroKicker}</p>
-            <h1 className="font-script text-center text-6xl leading-tight text-zinc-900 sm:text-7xl">{t.coupleNames}</h1>
-            <p className="font-display max-w-prose text-lg leading-8 text-zinc-700 sm:text-xl">{t.intro}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em]">{t.heroKicker}</p>
+            <h1 className="font-script text-center text-6xl leading-tight sm:text-7xl">{t.coupleNames}</h1>
+            <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p>
           </div>
 
           <div className="flex items-center gap-4" aria-hidden>
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
-            <span className="rounded-full border border-amber-300/80 bg-amber-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
+            <span className="h-px flex-1 border-t" />
+            <span className="rounded-full border bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
               August 15, 2026
             </span>
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-400/70 to-transparent" />
+            <span className="h-px flex-1 border-t" />
           </div>
 
-          <p className="font-display text-xl leading-9 text-zinc-700 sm:text-2xl">{t.announcement}</p>
+          <p className="font-display text-xl leading-9 sm:text-2xl">{t.announcement}</p>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-amber-300 bg-white/75 text-sm font-medium text-zinc-500 shadow-sm">
+            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed bg-white text-sm font-medium">
               {t.photoPlaceholder1}
             </div>
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-amber-300 bg-white/75 text-sm font-medium text-zinc-500 shadow-sm">
+            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed bg-white text-sm font-medium">
               {t.photoPlaceholder2}
             </div>
           </div>
 
-          <div className="rounded-3xl border border-amber-200 bg-white/90 p-7 shadow-[0_14px_35px_rgba(113,63,18,0.12)]">
-            <h2 className="font-display text-4xl text-zinc-900">{t.scheduleTitle}</h2>
-            <p className="mt-2 text-zinc-700">{t.dateLabel}</p>
+          <div className="rounded-3xl border bg-white p-7">
+            <h2 className="font-display text-4xl">{t.scheduleTitle}</h2>
+            <p className="mt-2">{t.dateLabel}</p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <article className="rounded-2xl border border-amber-100 bg-amber-50/40 p-5">
-                <h3 className="font-display text-3xl text-zinc-900">{t.ceremonyTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-amber-700">{t.ceremonyTime}</p>
-                <p className="mt-2 text-zinc-800">{t.ceremonyVenue}</p>
-                <p className="mt-3 text-zinc-700">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
+              <article className="rounded-2xl border bg-white p-5">
+                <h3 className="font-display text-3xl">{t.ceremonyTitle}</h3>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.ceremonyTime}</p>
+                <p className="mt-2">{t.ceremonyVenue}</p>
+                <p className="mt-3">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montreal%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-amber-800 underline decoration-amber-400 underline-offset-4 hover:text-amber-900"
+                  className="mt-3 inline-block text-sm font-semibold underline underline-offset-4"
                 >
                   {t.openMap}
                 </a>
               </article>
 
-              <article className="rounded-2xl border border-amber-100 bg-amber-50/40 p-5">
-                <h3 className="font-display text-3xl text-zinc-900">{t.receptionTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em] text-amber-700">{t.receptionTime}</p>
-                <p className="mt-2 text-zinc-800">{t.receptionVenue}</p>
-                <p className="mt-3 text-zinc-700">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
+              <article className="rounded-2xl border bg-white p-5">
+                <h3 className="font-display text-3xl">{t.receptionTitle}</h3>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.receptionTime}</p>
+                <p className="mt-2">{t.receptionVenue}</p>
+                <p className="mt-3">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold text-amber-800 underline decoration-amber-400 underline-offset-4 hover:text-amber-900"
+                  className="mt-3 inline-block text-sm font-semibold underline underline-offset-4"
                 >
                   {t.openMap}
                 </a>
@@ -154,7 +150,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <Suspense fallback={<div className="rounded-3xl border border-amber-200 bg-white/95 p-7 text-sm text-zinc-600">Loading RSVP form...</div>}>
+        <Suspense fallback={<div className="rounded-3xl border bg-white p-7 text-sm">Loading RSVP form...</div>}>
           <RsvpForm locale={locale} />
         </Suspense>
       </div>

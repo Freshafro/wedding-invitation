@@ -28,7 +28,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string>("");
-  const [isSuccess, setIsSuccess] = useState(false);
   const [inviteLookup, setInviteLookup] = useState<InviteLookup | null>(null);
   const [isCheckingInvite, setIsCheckingInvite] = useState(false);
   const searchParams = useSearchParams();
@@ -210,7 +209,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const handleSubmit = async (event: FormSubmitEvent) => {
     event.preventDefault();
     setStatusMessage("");
-    setIsSuccess(false);
 
     const parsed = rsvpSchema.safeParse(form);
     if (!parsed.success) {
@@ -255,7 +253,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         return;
       }
 
-      setIsSuccess(true);
       setStatusMessage(t.success);
       setForm((prev) => ({
         ...initialForm,
@@ -270,49 +267,49 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <form
-      className="space-y-6 rounded-3xl border border-amber-200 bg-white/95 p-7 shadow-[0_16px_40px_rgba(113,63,18,0.14)]"
+      className="space-y-6 rounded-3xl border bg-white p-7"
       onSubmit={handleSubmit}
     >
       <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">{t.kicker}</p>
-        <h2 className="font-display text-5xl leading-none text-zinc-900">{t.title}</h2>
-        <p className="text-sm leading-6 text-zinc-600">{t.deadline}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em]">{t.kicker}</p>
+        <h2 className="font-display text-5xl leading-none">{t.title}</h2>
+        <p className="text-sm leading-6">{t.deadline}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium text-zinc-800">{t.inviteCode}</span>
+          <span className="block text-sm font-medium">{t.inviteCode}</span>
           <input
-            className="w-full rounded-xl border border-zinc-300 px-3 py-2.5 font-semibold uppercase tracking-wide text-zinc-900 focus:border-amber-500 focus:outline-none"
+            className="w-full rounded-xl border px-3 py-2.5 font-semibold uppercase tracking-wide focus:outline-none"
             value={form.inviteCode}
             onChange={(e) => setForm((prev) => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
             autoCapitalize="characters"
             autoCorrect="off"
           />
-          <span className="text-xs text-zinc-500">
+          <span className="text-xs">
             {isCheckingInvite
               ? t.checkingCode
               : inviteLookup
                 ? `${t.inviteFoundPrefix} ${inviteLookup.householdName}. ${t.inviteLimitPrefix} ${inviteLookup.maxGuestsAllowed} ${t.inviteLimitSuffix}`
                 : t.inviteCodeHint}
           </span>
-          {errors.inviteCode ? <span className="text-xs text-red-600">{errors.inviteCode}</span> : null}
+          {errors.inviteCode ? <span className="text-xs">{errors.inviteCode}</span> : null}
         </label>
 
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium text-zinc-800">{t.fullName}</span>
+          <span className="block text-sm font-medium">{t.fullName}</span>
           <input
-            className="w-full rounded-xl border border-zinc-300 px-3 py-2.5 text-zinc-900 focus:border-amber-500 focus:outline-none"
+            className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
             value={form.fullName}
             onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
           />
-          {errors.fullName ? <span className="text-xs text-red-600">{errors.fullName}</span> : null}
+          {errors.fullName ? <span className="text-xs">{errors.fullName}</span> : null}
         </label>
 
         <label className="space-y-1">
-          <span className="block text-sm font-medium text-zinc-800">{t.attendance}</span>
+          <span className="block text-sm font-medium">{t.attendance}</span>
           <select
-            className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-zinc-900 focus:border-amber-500 focus:outline-none"
+            className="w-full rounded-xl border bg-white px-3 py-2.5 focus:outline-none"
             value={form.attendance}
             onChange={(e) => {
               const attendance = e.target.value;
@@ -326,33 +323,33 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
             <option value="yes">{t.yesOption}</option>
             <option value="no">{t.noOption}</option>
           </select>
-          {errors.attendance ? <span className="text-xs text-red-600">{errors.attendance}</span> : null}
+          {errors.attendance ? <span className="text-xs">{errors.attendance}</span> : null}
         </label>
 
         <label className="space-y-1">
-          <span className="block text-sm font-medium text-zinc-800">{t.partySize}</span>
+          <span className="block text-sm font-medium">{t.partySize}</span>
           <select
-            className="w-full rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-zinc-900 focus:border-amber-500 focus:outline-none"
+            className="w-full rounded-xl border bg-white px-3 py-2.5 focus:outline-none"
             value={form.guestCount}
             onChange={(e) => setForm((prev) => ({ ...prev, guestCount: e.target.value }))}
             disabled={form.attendance === "no" || !inviteLookup}
           >
             {guestCountOptions}
           </select>
-          {errors.guestCount ? <span className="text-xs text-red-600">{errors.guestCount}</span> : null}
+          {errors.guestCount ? <span className="text-xs">{errors.guestCount}</span> : null}
         </label>
 
         {additionalGuestsCount > 0 ? (
           <div className="space-y-2 sm:col-span-2">
-            <span className="block text-sm font-medium text-zinc-800">{t.additionalGuestNames}</span>
+            <span className="block text-sm font-medium">{t.additionalGuestNames}</span>
             <div className="grid gap-3">
               {form.additionalGuestNames.map((value, index) => (
                 <label className="space-y-1" key={`additional-guest-${index}`}>
-                  <span className="block text-xs font-medium uppercase tracking-[0.12em] text-zinc-600">
+                  <span className="block text-xs font-medium uppercase tracking-[0.12em]">
                     {t.additionalGuestLabel} {index + 1} *
                   </span>
                   <input
-                    className="w-full rounded-xl border border-zinc-300 px-3 py-2.5 text-zinc-900 focus:border-amber-500 focus:outline-none"
+                    className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
                     value={value}
                     onChange={(e) =>
                       setForm((prev) => {
@@ -366,20 +363,20 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
               ))}
             </div>
             {errors.additionalGuestNames ? (
-              <span className="text-xs text-red-600">{errors.additionalGuestNames}</span>
+              <span className="text-xs">{errors.additionalGuestNames}</span>
             ) : null}
           </div>
         ) : null}
 
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium text-zinc-800">{t.dietary}</span>
+          <span className="block text-sm font-medium">{t.dietary}</span>
           <textarea
-            className="w-full rounded-xl border border-zinc-300 px-3 py-2.5 text-zinc-900 focus:border-amber-500 focus:outline-none"
+            className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
             rows={3}
             value={form.dietaryNotes}
             onChange={(e) => setForm((prev) => ({ ...prev, dietaryNotes: e.target.value }))}
           />
-          {errors.dietaryNotes ? <span className="text-xs text-red-600">{errors.dietaryNotes}</span> : null}
+          {errors.dietaryNotes ? <span className="text-xs">{errors.dietaryNotes}</span> : null}
         </label>
 
         <label className="hidden" aria-hidden>
@@ -390,14 +387,14 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
       <button
         type="submit"
-        className="w-full rounded-xl bg-gradient-to-r from-amber-700 to-rose-700 px-4 py-3 text-sm font-semibold text-white transition hover:from-amber-800 hover:to-rose-800 disabled:cursor-not-allowed disabled:from-zinc-400 disabled:to-zinc-400"
+        className="w-full rounded-xl border px-4 py-3 text-sm font-semibold transition disabled:cursor-not-allowed"
         disabled={isSubmitting}
       >
         {isSubmitting ? t.submitting : t.submit}
       </button>
 
       {statusMessage ? (
-        <p className={`text-sm ${isSuccess ? "text-emerald-700" : "text-red-600"}`}>{statusMessage}</p>
+        <p className="text-sm">{statusMessage}</p>
       ) : null}
     </form>
   );
