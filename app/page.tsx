@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { RsvpForm } from "@/components/RsvpForm";
 
 type Locale = "en" | "fr";
@@ -154,7 +154,9 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <RsvpForm locale={locale} />
+        <Suspense fallback={<div className="rounded-3xl border border-amber-200 bg-white/95 p-7 text-sm text-zinc-600">Loading RSVP form...</div>}>
+          <RsvpForm locale={locale} />
+        </Suspense>
       </div>
     </main>
   );
