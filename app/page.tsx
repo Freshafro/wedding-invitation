@@ -13,6 +13,7 @@ export default function Home() {
       en: {
         coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
+        heroDate: "August 15, 2026",
         intro: "We are so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
         announcement: (
           <>
@@ -38,6 +39,7 @@ export default function Home() {
       fr: {
         coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
+        heroDate: "15 août 2026",
         intro: "Nous sommes ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.",
         announcement: (
           <>
@@ -105,7 +107,7 @@ export default function Home() {
           <div className="flex items-center gap-4" aria-hidden>
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
             <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
-              August 15, 2026
+              {t.heroDate}
             </span>
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
