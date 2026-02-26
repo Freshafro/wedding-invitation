@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  /* --background: #ffffff; */
-  /* --foreground: #171717; */
+  --background: #ffffff;
+  --foreground: #332c30;
+  --surface-soft: #f7f3ef;
+  --surface-warm: #cfc4bb;
+  --surface-cool: #c2c7ca;
+  --border-muted: #b6aba2;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-cormorant-garamond);
@@ -18,7 +22,7 @@
 
 body {
   background: var(--background);
-  color: #000000;
+  color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 

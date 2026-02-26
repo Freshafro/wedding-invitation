@@ -74,7 +74,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         yesOption: "Yes, I will be able to attend",
         noOption: "No, I will not be able to attend",
         partySize: "Number of people in your party *",
-        additionalGuestNames: "Names of additional guests",
+        additionalGuestNames: "Full names of additional guests",
         additionalGuestLabel: "Additional guest",
         dietary: "Dietary notes",
         submit: "Submit your response",
@@ -99,8 +99,8 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         yesOption: "Oui, avec plaisir",
         noOption: "Non, je ne pourrai pas être présent(e)",
         partySize: "Nombre de personnes *",
-        additionalGuestNames: "Noms des personnes qui vous accompagnent",
-        additionalGuestLabel: "Personne accompagnatrice",
+        additionalGuestNames: "Noms complet des personnes qui vous accompagnent",
+        additionalGuestLabel: "Accompagnateur(trice)",
         dietary: "Restrictions alimentaires",
         submit: "Envoyer ma réponse",
         submitting: "Envoi de la réponse en cours...",
@@ -267,7 +267,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <form
-      className="space-y-6 rounded-3xl border bg-white p-7"
+      className="space-y-6 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7"
       onSubmit={handleSubmit}
     >
       <div className="space-y-2">
@@ -280,7 +280,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.inviteCode}</span>
           <input
-            className="w-full rounded-xl border px-3 py-2.5 font-semibold uppercase tracking-wide focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 font-semibold uppercase tracking-wide focus:outline-none"
             value={form.inviteCode}
             onChange={(e) => setForm((prev) => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
             autoCapitalize="characters"
@@ -299,7 +299,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.fullName}</span>
           <input
-            className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
             value={form.fullName}
             onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
           />
@@ -309,7 +309,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1">
           <span className="block text-sm font-medium">{t.attendance}</span>
           <select
-            className="w-full rounded-xl border bg-white px-3 py-2.5 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
             value={form.attendance}
             onChange={(e) => {
               const attendance = e.target.value;
@@ -329,7 +329,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1">
           <span className="block text-sm font-medium">{t.partySize}</span>
           <select
-            className="w-full rounded-xl border bg-white px-3 py-2.5 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
             value={form.guestCount}
             onChange={(e) => setForm((prev) => ({ ...prev, guestCount: e.target.value }))}
             disabled={form.attendance === "no" || !inviteLookup}
@@ -349,7 +349,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
                     {t.additionalGuestLabel} {index + 1} *
                   </span>
                   <input
-                    className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
+                    className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
                     value={value}
                     onChange={(e) =>
                       setForm((prev) => {
@@ -371,7 +371,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.dietary}</span>
           <textarea
-            className="w-full rounded-xl border px-3 py-2.5 focus:outline-none"
+            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
             rows={3}
             value={form.dietaryNotes}
             onChange={(e) => setForm((prev) => ({ ...prev, dietaryNotes: e.target.value }))}
@@ -387,7 +387,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
       <button
         type="submit"
-        className="w-full rounded-xl border px-4 py-3 text-sm font-semibold transition disabled:cursor-not-allowed"
+        className="w-full rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={isSubmitting}
       >
         {isSubmitting ? t.submitting : t.submit}

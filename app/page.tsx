@@ -11,14 +11,14 @@ export default function Home() {
   const copy = useMemo(
     () => ({
       en: {
-        coupleNames: "Georges and Christella",
+        coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
         intro: "We are so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
         announcement: (
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
             <strong>Rosa Marie Ngo Um</strong>, together with <strong>Anastase Nzobonimpa</strong> and{" "}
-            <strong>Josee Tuyisenge</strong>, request the honor of your presence at the wedding celebration of their
+            <strong>Jozee Tuyisenge</strong>, request the honor of your presence at the wedding celebration of their
             children, <strong>Georges Anthony Boum</strong> and <strong>Christella Emerusenge</strong>, 
             on the <strong>15th of August, 2026</strong>.
           </>
@@ -36,14 +36,14 @@ export default function Home() {
         photoPlaceholder2: "Photo Placeholder 2",
       },
       fr: {
-        coupleNames: "Georges et Christella",
+        coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
         intro: "Nous sommes ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.",
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
             <strong>Rosa Marie Ngo Um</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
-            <strong>Josee Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
+            <strong>Jozee Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
             <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <strong>15 août 2026</strong>.
           </>
         ),
@@ -70,18 +70,26 @@ export default function Home() {
       <div className="relative mx-auto w-full max-w-3xl space-y-10">
         <section className="space-y-10">
           <div className="flex justify-end">
-            <div className="inline-flex overflow-hidden rounded-full border text-xs font-semibold uppercase tracking-[0.12em]">
+            <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] p-1 text-xs font-semibold uppercase tracking-[0.12em]">
               <button
                 type="button"
                 onClick={() => setLocale("en")}
-                className={`px-4 py-2 transition ${locale === "en" ? "underline" : ""}`}
+                className={`rounded-full px-4 py-2 transition ${
+                  locale === "en"
+                    ? "bg-[#332c30] text-white"
+                    : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
+                }`}
               >
                 EN
               </button>
               <button
                 type="button"
                 onClick={() => setLocale("fr")}
-                className={`px-4 py-2 transition ${locale === "fr" ? "underline" : ""}`}
+                className={`rounded-full px-4 py-2 transition ${
+                  locale === "fr"
+                    ? "bg-[#332c30] text-white"
+                    : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
+                }`}
               >
                 FR
               </button>
@@ -95,30 +103,30 @@ export default function Home() {
           </div>
 
           <div className="flex items-center gap-4" aria-hidden>
-            <span className="h-px flex-1 border-t" />
-            <span className="rounded-full border bg-white px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
+            <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
+            <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
               August 15, 2026
             </span>
-            <span className="h-px flex-1 border-t" />
+            <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
           <p className="font-display text-xl leading-9 sm:text-2xl">{t.announcement}</p>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed bg-white text-sm font-medium">
+            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
               {t.photoPlaceholder1}
             </div>
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed bg-white text-sm font-medium">
+            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
               {t.photoPlaceholder2}
             </div>
           </div>
 
-          <div className="rounded-3xl border bg-white p-7">
+          <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7">
             <h2 className="font-display text-4xl">{t.scheduleTitle}</h2>
             <p className="mt-2">{t.dateLabel}</p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <article className="rounded-2xl border bg-white p-5">
+              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
                 <h3 className="font-display text-3xl">{t.ceremonyTitle}</h3>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.ceremonyTime}</p>
                 <p className="mt-2">{t.ceremonyVenue}</p>
@@ -133,7 +141,7 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="rounded-2xl border bg-white p-5">
+              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
                 <h3 className="font-display text-3xl">{t.receptionTitle}</h3>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.receptionTime}</p>
                 <p className="mt-2">{t.receptionVenue}</p>
@@ -150,7 +158,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <Suspense fallback={<div className="rounded-3xl border bg-white p-7 text-sm">Loading RSVP form...</div>}>
+        <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
           <RsvpForm locale={locale} />
         </Suspense>
       </div>
