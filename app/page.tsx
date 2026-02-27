@@ -44,7 +44,7 @@ export default function Home() {
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
-            <strong>Rosa Marie Ngo Um</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
+            <strong>Rosa Marie Ngo Um Epse Boum</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
             <strong>Jozee Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
             <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <strong>15 août 2026</strong>.
           </>
