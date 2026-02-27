@@ -9,8 +9,8 @@
   --border-muted: #b6aba2;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-cormorant-garamond);
-  --font-script: var(--font-great-vibes);
+  --font-display: var(--font-lora);
+  --font-script: var(--font-bodoni-moda);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -31,9 +31,9 @@ html {
 }
 
 .font-display {
-  font-family: var(--font-cormorant-garamond), "Times New Roman", serif;
+  font-family: var(--font-lora), Georgia, "Times New Roman", serif;
 }
 
 .font-script {
-  font-family: var(--font-great-vibes), "Brush Script MT", "Segoe Script", cursive;
+  font-family: var(--font-bodoni-moda), "Times New Roman", serif;
 }

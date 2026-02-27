@@ -31,7 +31,7 @@ export default function Home() {
         ceremonyVenue: "La Visitation-de-la-Bienheureuse-Vierge-Marie",
         receptionTitle: "Reception",
         receptionTime: "Starting 5:00 PM",
-        receptionVenue: "Centre des congres et banquets Renaissance",
+        receptionVenue: "Centre des congrès et banquets Renaissance",
         openMap: "Open in Google Maps",
         photoPlaceholder1: "Photo Placeholder 1",
         photoPlaceholder2: "Photo Placeholder 2",
@@ -100,7 +100,7 @@ export default function Home() {
 
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em]">{t.heroKicker}</p>
-            <h1 className="font-script text-center text-6xl leading-tight sm:text-7xl">{t.coupleNames}</h1>
+            <h1 className="font-script text-center text-5xl leading-tight sm:text-6xl">{t.coupleNames}</h1>
             <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p>
           </div>
 
@@ -112,7 +112,7 @@ export default function Home() {
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
-          <p className="font-display text-xl leading-9 sm:text-2xl">{t.announcement}</p>
+          <p className="font-display text-lg leading-8 sm:text-xl">{t.announcement}</p>
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
@@ -124,12 +124,12 @@ export default function Home() {
           </div>
 
           <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7">
-            <h2 className="font-display text-4xl">{t.scheduleTitle}</h2>
+            <h2 className="font-display text-2xl sm:text-3xl">{t.scheduleTitle}</h2>
             <p className="mt-2">{t.dateLabel}</p>
 
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
-                <h3 className="font-display text-3xl">{t.ceremonyTitle}</h3>
+                <h3 className="font-display text-xl sm:text-2xl">{t.ceremonyTitle}</h3>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.ceremonyTime}</p>
                 <p className="mt-2">{t.ceremonyVenue}</p>
                 <p className="mt-3">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
@@ -144,7 +144,7 @@ export default function Home() {
               </article>
 
               <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
-                <h3 className="font-display text-3xl">{t.receptionTitle}</h3>
+                <h3 className="font-display text-xl sm:text-2xl">{t.receptionTitle}</h3>
                 <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.receptionTime}</p>
                 <p className="mt-2">{t.receptionVenue}</p>
                 <p className="mt-3">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
