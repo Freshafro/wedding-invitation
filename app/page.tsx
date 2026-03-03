@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import Image from "next/image";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import { RsvpForm } from "@/components/RsvpForm";
 
@@ -11,8 +12,12 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
+const photoImagePaths = ["/food-optimized.jpg", "/netflix-optimized.jpg", "/youtube-optimized.jpg"];
+
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
+  const [activeSlide, setActiveSlide] = useState(0);
+  const touchStartX = useRef<number | null>(null);
 
   const copy = useMemo(
     () => ({
@@ -39,8 +44,9 @@ export default function Home() {
         receptionTime: "Starting 5:00 PM",
         receptionVenue: "Centre des congrès et banquets Renaissance",
         openMap: "Open in Google Maps",
-        photoPlaceholder1: "Photo Placeholder 1",
-        photoPlaceholder2: "Photo Placeholder 2",
+        previousSlide: "Previous",
+        nextSlide: "Next",
+        photoSlides: ["Couple photo 1", "Couple photo 2", "Couple photo 3"],
       },
       fr: {
         coupleNames: "Georges & Christella",
@@ -64,14 +70,65 @@ export default function Home() {
         receptionTime: "À partir de 17 h 00",
         receptionVenue: "Centre des congrès et banquets Renaissance",
         openMap: "Ouvrir dans Google Maps",
-        photoPlaceholder1: "Espace photo 1",
-        photoPlaceholder2: "Espace photo 2",
+        previousSlide: "Précédent",
+        nextSlide: "Suivant",
+        photoSlides: ["Photo du couple 1", "Photo du couple 2", "Photo du couple 3"],
       },
     }),
     []
   );
 
   const t = copy[locale];
+  const totalSlides = photoImagePaths.length;
+
+  useEffect(() => {
+    if (activeSlide >= totalSlides) {
+      setActiveSlide(0);
+    }
+  }, [activeSlide, totalSlides]);
+
+  useEffect(() => {
+    if (totalSlides <= 1) return;
+
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+    }, 3000);
+
+    return () => window.clearInterval(intervalId);
+  }, [totalSlides]);
+
+  const showPreviousSlide = () => {
+    setActiveSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+  };
+
+  const showNextSlide = () => {
+    setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+
+    const touchEndX = event.changedTouches[0]?.clientX;
+    if (typeof touchEndX !== "number") {
+      touchStartX.current = null;
+      return;
+    }
+
+    const swipeDistance = touchEndX - touchStartX.current;
+    const swipeThreshold = 40;
+
+    if (swipeDistance > swipeThreshold) {
+      showPreviousSlide();
+    } else if (swipeDistance < -swipeThreshold) {
+      showNextSlide();
+    }
+
+    touchStartX.current = null;
+  };
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
@@ -121,12 +178,63 @@ export default function Home() {
 
           <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
-          <div className="grid gap-5 sm:grid-cols-2">
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
-              {t.photoPlaceholder1}
+          <div className="space-y-4">
+            <div
+              className="relative mx-auto aspect-square w-full max-w-xl overflow-hidden rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)]"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="flex h-full transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+              >
+                {photoImagePaths.map((src, index) => (
+                  <div
+                    key={index}
+                    className="relative h-full w-full shrink-0"
+                  >
+                    <Image
+                      src={src}
+                      alt={t.photoSlides[index] ?? `Slide ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 768px, 100vw"
+                      priority={index === 0}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={showPreviousSlide}
+                aria-label={t.previousSlide}
+                className="absolute inset-y-0 left-0 hidden w-1/4 cursor-pointer bg-gradient-to-r from-black/15 to-transparent opacity-0 transition hover:opacity-100 focus:opacity-100 focus:outline-none md:block"
+              >
+                <span className="sr-only">{t.previousSlide}</span>
+              </button>
+              <button
+                type="button"
+                onClick={showNextSlide}
+                aria-label={t.nextSlide}
+                className="absolute inset-y-0 right-0 hidden w-1/4 cursor-pointer bg-gradient-to-l from-black/15 to-transparent opacity-0 transition hover:opacity-100 focus:opacity-100 focus:outline-none md:block"
+              >
+                <span className="sr-only">{t.nextSlide}</span>
+              </button>
             </div>
-            <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
-              {t.photoPlaceholder2}
+
+            <div className="flex justify-center gap-2">
+              {photoImagePaths.map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  onClick={() => setActiveSlide(index)}
+                  aria-label={`Go to slide ${index + 1}`}
+                  className={`h-2.5 w-2.5 rounded-full transition ${
+                    activeSlide === index ? "bg-[#332c30]" : "bg-[var(--border-muted)]"
+                  }`}
+                />
+              ))}
             </div>
           </div>
 
