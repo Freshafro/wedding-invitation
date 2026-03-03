@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Geist, Geist_Mono, Lora } from "next/font/google";
+import { Bodoni_Moda, Geist, Geist_Mono, Lora, Tangerine } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,6 +24,12 @@ const bodoniModa = Bodoni_Moda({
   weight: ["500", "600", "700"],
 });
 
+const tangerine = Tangerine({
+  variable: "--font-tangerine",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Georges and Christella | Mariage & RSVP",
   description: "Site de mariage et RSVP de Georges Anthony Boum et Christella Emerusenge.",
@@ -37,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${bodoniModa.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${lora.variable} ${bodoniModa.variable} ${tangerine.variable} antialiased`}
       >
         {children}
       </body>

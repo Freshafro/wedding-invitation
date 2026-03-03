@@ -14,7 +14,7 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
         heroDate: "August 15, 2026",
-        intro: "We are so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
+        intro: "We would be so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
         announcement: (
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
@@ -40,7 +40,7 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
         heroDate: "15 août 2026",
-        intro: "Nous sommes ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.",
+        intro: "Nous saurions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.",
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
@@ -100,8 +100,10 @@ export default function Home() {
 
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em]">{t.heroKicker}</p>
-            <h1 className="font-script text-center text-5xl leading-tight sm:text-6xl">{t.coupleNames}</h1>
-            <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p>
+            <h1 className="font-couple text-center text-5xl leading-tight font-normal sm:text-6xl">
+              {t.coupleNames}
+            </h1>
+            {/* <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p> */}
           </div>
 
           <div className="flex items-center gap-4" aria-hidden>
@@ -160,6 +162,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p>
+        
         <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
           <RsvpForm locale={locale} />
         </Suspense>

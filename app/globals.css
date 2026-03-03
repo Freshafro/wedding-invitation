@@ -37,3 +37,7 @@ html {
 .font-script {
   font-family: var(--font-bodoni-moda), "Times New Roman", serif;
 }
+
+.font-couple {
+  font-family: var(--font-tangerine), "Brush Script MT", cursive;
+}
