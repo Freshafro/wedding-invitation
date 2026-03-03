@@ -27,7 +27,7 @@ export default function Home() {
             <strong>Rosa Marie Ngo Um</strong>, together with <strong>Anastase Nzobonimpa</strong> and{" "}
             <strong>Joze Tuyisenge</strong>, request the honor of your presence at the wedding celebration of their
             children, <strong>Georges Anthony Boum</strong> and <strong>Christella Emerusenge</strong>, 
-            on the <strong>15th of August, 2026</strong>.
+            on the <br /><strong>15th of August, 2026</strong>.
           </>
         ),
         scheduleTitle: "Wedding Day Schedule",
@@ -52,7 +52,7 @@ export default function Home() {
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
             <strong>Rosa Marie Ngo Um Epse Boum</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
             <strong>Joze Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
-            <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <strong>15 août 2026</strong>.
+            <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <br /><strong>15 août 2026</strong>.
           </>
         ),
         scheduleTitle: "Programme de la journée",
@@ -119,7 +119,7 @@ export default function Home() {
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
-          <p className="font-display text-justify text-lg leading-8 sm:text-xl">{t.announcement}</p>
+          <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
@@ -168,7 +168,7 @@ export default function Home() {
           </div>
         </section>
 
-        <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p>
+        <p className="font-display max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
         
         <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
           <RsvpForm locale={locale} />
