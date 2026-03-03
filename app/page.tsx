@@ -119,7 +119,7 @@ export default function Home() {
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
-          <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
+          <p className="font-display text-justify text-lg leading-8 sm:text-xl">{t.announcement}</p>
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="flex min-h-64 items-center justify-center rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)] text-sm font-medium">
