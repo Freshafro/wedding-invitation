@@ -168,7 +168,7 @@ export default function Home() {
           </div>
         </section>
 
-        <p className="font-display max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
+        <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
         
         <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
           <RsvpForm locale={locale} />
