@@ -9,7 +9,7 @@
   --border-muted: #b6aba2;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-lora);
+  --font-display: var(--font-cormorant-garamond);
   --font-script: var(--font-bodoni-moda);
 }
 
@@ -23,7 +23,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant-garamond), Georgia, "Times New Roman", serif;
 }
 
 html {
@@ -31,13 +31,10 @@ html {
 }
 
 .font-display {
-  font-family: var(--font-lora), Georgia, "Times New Roman", serif;
+  font-family: var(--font-cormorant-garamond), Georgia, "Times New Roman", serif;
 }
 
 .font-script {
   font-family: var(--font-bodoni-moda), "Times New Roman", serif;
 }
 
-.font-couple {
-  font-family: var(--font-tangerine), "Brush Script MT", cursive;
-}

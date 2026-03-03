@@ -1,9 +1,15 @@
 "use client";
 
 import { Suspense, useMemo, useState } from "react";
+import { Great_Vibes } from "next/font/google";
 import { RsvpForm } from "@/components/RsvpForm";
 
 type Locale = "en" | "fr";
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -19,7 +25,7 @@ export default function Home() {
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
             <strong>Rosa Marie Ngo Um</strong>, together with <strong>Anastase Nzobonimpa</strong> and{" "}
-            <strong>Jozee Tuyisenge</strong>, request the honor of your presence at the wedding celebration of their
+            <strong>Joze Tuyisenge</strong>, request the honor of your presence at the wedding celebration of their
             children, <strong>Georges Anthony Boum</strong> and <strong>Christella Emerusenge</strong>, 
             on the <strong>15th of August, 2026</strong>.
           </>
@@ -45,7 +51,7 @@ export default function Home() {
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
             <strong>Rosa Marie Ngo Um Epse Boum</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
-            <strong>Jozee Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
+            <strong>Joze Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
             <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <strong>15 août 2026</strong>.
           </>
         ),
@@ -100,7 +106,7 @@ export default function Home() {
 
           <div className="space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.3em]">{t.heroKicker}</p>
-            <h1 className="font-couple text-center text-5xl leading-tight font-normal sm:text-6xl">
+            <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
               {t.coupleNames}
             </h1>
             {/* <p className="font-display max-w-prose text-lg leading-8 sm:text-xl">{t.intro}</p> */}
