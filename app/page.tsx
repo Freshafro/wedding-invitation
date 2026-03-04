@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import { RsvpForm } from "@/components/RsvpForm";
 
@@ -12,12 +12,10 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/food-optimized.jpg", "/netflix-optimized.jpg", "/youtube-optimized.jpg"];
+const photoImagePaths = ["/food-optimized.jpg", "/food-optimized.jpg", "/food-optimized.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
-  const [activeSlide, setActiveSlide] = useState(0);
-  const touchStartX = useRef<number | null>(null);
 
   const copy = useMemo(
     () => ({
@@ -44,9 +42,11 @@ export default function Home() {
         receptionTime: "Starting 5:00 PM",
         receptionVenue: "Centre des congrès et banquets Renaissance",
         openMap: "Open in Google Maps",
-        previousSlide: "Previous",
-        nextSlide: "Next",
-        photoSlides: ["Couple photo 1", "Couple photo 2", "Couple photo 3"],
+        heroPhotoAlts: [
+          "Georges and Christella smiling together",
+          "Georges and Christella portrait",
+          "Georges and Christella candid moment",
+        ],
       },
       fr: {
         coupleNames: "Georges & Christella",
@@ -70,65 +70,17 @@ export default function Home() {
         receptionTime: "À partir de 17 h 00",
         receptionVenue: "Centre des congrès et banquets Renaissance",
         openMap: "Ouvrir dans Google Maps",
-        previousSlide: "Précédent",
-        nextSlide: "Suivant",
-        photoSlides: ["Photo du couple 1", "Photo du couple 2", "Photo du couple 3"],
+        heroPhotoAlts: [
+          "Georges et Christella souriants ensemble",
+          "Portrait de Georges et Christella",
+          "Moment spontané de Georges et Christella",
+        ],
       },
     }),
     []
   );
 
   const t = copy[locale];
-  const totalSlides = photoImagePaths.length;
-
-  useEffect(() => {
-    if (activeSlide >= totalSlides) {
-      setActiveSlide(0);
-    }
-  }, [activeSlide, totalSlides]);
-
-  useEffect(() => {
-    if (totalSlides <= 1) return;
-
-    const intervalId = window.setInterval(() => {
-      setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-    }, 3000);
-
-    return () => window.clearInterval(intervalId);
-  }, [totalSlides]);
-
-  const showPreviousSlide = () => {
-    setActiveSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const showNextSlide = () => {
-    setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-  };
-
-  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
-  };
-
-  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null) return;
-
-    const touchEndX = event.changedTouches[0]?.clientX;
-    if (typeof touchEndX !== "number") {
-      touchStartX.current = null;
-      return;
-    }
-
-    const swipeDistance = touchEndX - touchStartX.current;
-    const swipeThreshold = 40;
-
-    if (swipeDistance > swipeThreshold) {
-      showPreviousSlide();
-    } else if (swipeDistance < -swipeThreshold) {
-      showNextSlide();
-    }
-
-    touchStartX.current = null;
-  };
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
@@ -162,7 +114,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em]">{t.heroKicker}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
             <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
               {t.coupleNames}
             </h1>
@@ -170,7 +122,7 @@ export default function Home() {
 
           <div className="flex items-center gap-4" aria-hidden>
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
-            <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
+            <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em]">
               {t.heroDate}
             </span>
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
@@ -179,73 +131,68 @@ export default function Home() {
           <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
           <div className="space-y-4">
-            <div
-              className="relative mx-auto aspect-square w-full max-w-xl overflow-hidden rounded-2xl border border-dashed border-[var(--border-muted)] bg-[var(--surface-soft)]"
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
-            >
-              <div
-                className="flex h-full transition-transform duration-500 ease-out"
-                style={{ transform: `translateX(-${activeSlide * 100}%)` }}
-              >
-                {photoImagePaths.map((src, index) => (
-                  <div
-                    key={index}
-                    className="relative h-full w-full shrink-0"
-                  >
-                    <Image
-                      src={src}
-                      alt={t.photoSlides[index] ?? `Slide ${index + 1}`}
-                      fill
-                      className="object-cover"
-                      sizes="(min-width: 1024px) 768px, 100vw"
-                      priority={index === 0}
-                    />
-                  </div>
-                ))}
-              </div>
+            <div className="sm:hidden">
+              <div className="relative mx-auto h-[27rem] w-full max-w-sm">
+                <figure className="absolute left-1 top-0 z-10 aspect-[4/5] w-[58%] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]">
+                  <Image
+                    src={photoImagePaths[0]}
+                    alt={t.heroPhotoAlts[0] ?? "Couple photo 1"}
+                    fill
+                    className="object-cover"
+                    sizes="76vw"
+                  />
+                </figure>
 
-              <button
-                type="button"
-                onClick={showPreviousSlide}
-                aria-label={t.previousSlide}
-                className="absolute inset-y-0 left-0 hidden w-1/4 cursor-pointer bg-gradient-to-r from-black/15 to-transparent opacity-0 transition hover:opacity-100 focus:opacity-100 focus:outline-none md:block"
-              >
-                <span className="sr-only">{t.previousSlide}</span>
-              </button>
-              <button
-                type="button"
-                onClick={showNextSlide}
-                aria-label={t.nextSlide}
-                className="absolute inset-y-0 right-0 hidden w-1/4 cursor-pointer bg-gradient-to-l from-black/15 to-transparent opacity-0 transition hover:opacity-100 focus:opacity-100 focus:outline-none md:block"
-              >
-                <span className="sr-only">{t.nextSlide}</span>
-              </button>
+                <figure className="absolute right-1 top-32 z-20 aspect-[4/5] w-[58%] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_14px_36px_rgba(51,44,48,0.14)]">
+                  <Image
+                    src={photoImagePaths[1] ?? photoImagePaths[0]}
+                    alt={t.heroPhotoAlts[1] ?? "Couple photo 2"}
+                    fill
+                    className="object-cover scale-[1.03] saturate-110"
+                    sizes="76vw"
+                    priority
+                  />
+                </figure>
+              </div>
             </div>
 
-            <div className="flex justify-center gap-2">
-              {photoImagePaths.map((_, index) => (
-                <button
+            <div className="hidden gap-3 sm:grid sm:grid-cols-3">
+              {photoImagePaths.slice(0, 3).map((src, index) => (
+                <figure
                   key={index}
-                  type="button"
-                  onClick={() => setActiveSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                  className={`h-2.5 w-2.5 rounded-full transition ${
-                    activeSlide === index ? "bg-[#332c30]" : "bg-[var(--border-muted)]"
+                  className={`group relative overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] ${
+                    index === 1 ? "aspect-[3/4] -mt-3 shadow-[0_14px_36px_rgba(51,44,48,0.14)]" : "aspect-[4/5] mt-3"
                   }`}
-                />
+                >
+                  <Image
+                    src={src}
+                    alt={t.heroPhotoAlts[index] ?? `Couple photo ${index + 1}`}
+                    fill
+                    className={`object-cover transition duration-500 ${
+                      index === 1 ? "scale-[1.03] saturate-110" : "group-hover:scale-[1.02]"
+                    }`}
+                    sizes="(min-width: 1024px) 320px, (min-width: 640px) 33vw, 100vw"
+                    priority={index === 1}
+                  />
+                </figure>
               ))}
             </div>
           </div>
 
-          <div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7">
+          <div className="mt-5 flex items-center justify-center gap-3 py-0.5 sm:mt-0" aria-hidden>
+            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
+            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+          </div>
+
+          <div className="rounded-3xl p-6 sm:p-7">
             <h2 className="font-display text-2xl sm:text-3xl">{t.scheduleTitle}</h2>
             <p className="mt-2">{t.dateLabel}</p>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h3 className="font-display text-xl sm:text-2xl">{t.ceremonyTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.ceremonyTime}</p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em]">{t.ceremonyTime}</p>
                 <p className="mt-2">{t.ceremonyVenue}</p>
                 <p className="mt-3">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
                 <a
@@ -258,9 +205,9 @@ export default function Home() {
                 </a>
               </article>
 
-              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-5">
+              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h3 className="font-display text-xl sm:text-2xl">{t.receptionTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]">{t.receptionTime}</p>
+                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em]">{t.receptionTime}</p>
                 <p className="mt-2">{t.receptionVenue}</p>
                 <p className="mt-3">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
                 <a

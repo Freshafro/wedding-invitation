@@ -267,13 +267,15 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <form
-      className="space-y-6 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7"
+      className="space-y-6 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 shadow-[0_14px_36px_rgba(51,44,48,0.12)]"
       onSubmit={handleSubmit}
     >
       <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em]">{t.kicker}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.kicker}</p>
         <h2 className="font-display text-5xl leading-none">{t.title}</h2>
-        <p className="text-sm leading-6">{t.deadline}</p>
+        <p className="inline-block rounded-xl border border-[var(--border-muted)] bg-white/70 px-3 py-2 text-sm leading-6">
+          {t.deadline}
+        </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
