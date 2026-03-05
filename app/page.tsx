@@ -132,27 +132,22 @@ export default function Home() {
 
           <div className="space-y-4">
             <div className="sm:hidden">
-              <div className="relative mx-auto h-[27rem] w-full max-w-sm">
-                <figure className="absolute left-1 top-0 z-10 aspect-[4/5] w-[58%] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]">
-                  <Image
-                    src={photoImagePaths[0]}
-                    alt={t.heroPhotoAlts[0] ?? "Couple photo 1"}
-                    fill
-                    className="object-cover"
-                    sizes="76vw"
-                  />
-                </figure>
-
-                <figure className="absolute right-1 top-32 z-20 aspect-[4/5] w-[58%] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_14px_36px_rgba(51,44,48,0.14)]">
-                  <Image
-                    src={photoImagePaths[1] ?? photoImagePaths[0]}
-                    alt={t.heroPhotoAlts[1] ?? "Couple photo 2"}
-                    fill
-                    className="object-cover scale-[1.03] saturate-110"
-                    sizes="76vw"
-                    priority
-                  />
-                </figure>
+              <div className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {photoImagePaths.slice(0, 3).map((src, index) => (
+                  <figure
+                    key={`mobile-${index}`}
+                    className="relative aspect-[4/5] w-[82%] shrink-0 snap-center overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                  >
+                    <Image
+                      src={src}
+                      alt={t.heroPhotoAlts[index] ?? `Couple photo ${index + 1}`}
+                      fill
+                      className={`object-cover ${index === 1 ? "scale-[1.03] saturate-110" : ""}`}
+                      sizes="82vw"
+                      priority={index === 1}
+                    />
+                  </figure>
+                ))}
               </div>
             </div>
 
@@ -185,7 +180,7 @@ export default function Home() {
             <span className="h-px w-16 bg-[var(--border-muted)]/70" />
           </div>
 
-          <div className="rounded-3xl p-6 sm:p-7">
+          <div className="-mt-7 rounded-3xl p-6 sm:p-7">
             <h2 className="font-display text-2xl sm:text-3xl">{t.scheduleTitle}</h2>
             <p className="mt-2">{t.dateLabel}</p>
 
