@@ -84,7 +84,7 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
-      <div className="relative mx-auto w-full max-w-3xl space-y-10">
+      <div className="relative mx-auto w-full max-w-3xl">
         <section className="space-y-10">
           <div className="flex justify-end">
             <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] p-1 text-xs font-semibold uppercase tracking-[0.12em]">
@@ -227,21 +227,29 @@ export default function Home() {
           </div>
         </section>
 
-        <figure className="relative mx-auto w-full max-w-2xl overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
-          <Image
-            src="/laughing_couple_bottomPage.jpg"
-            alt="Georges and Christella laughing together"
-            fill
-            className="object-cover"
-            sizes="(min-width: 1024px) 832px, 100vw"
-          />
-        </figure>
+        <div className="mt-6 space-y-6">
+          <div className="mt-2 flex items-center justify-center gap-3 py-0.5" aria-hidden>
+            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
+            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+          </div>
 
-        <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
-        
-        <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
-          <RsvpForm locale={locale} />
-        </Suspense>
+          <figure className="relative mx-auto w-full max-w-2xl overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
+            <Image
+              src="/laughing_couple_bottomPage.jpg"
+              alt="Georges and Christella laughing together"
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 832px, 100vw"
+            />
+          </figure>
+
+          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
+
+          <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
+            <RsvpForm locale={locale} />
+          </Suspense>
+        </div>
       </div>
     </main>
   );

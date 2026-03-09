@@ -62,7 +62,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         kicker: "Guest Response",
         title: "RSVP",
         inviteCode: "Invitation code *",
-        inviteCodeHint: "Use the code included in your invitation email or link.",
+        inviteCodeHint: "Use the code included in your invitation email or link. ",
         checkingCode: "Checking code...",
         inviteFoundPrefix: "Invitation found for",
         inviteLimitPrefix: "This invitation allows for up to",
@@ -81,12 +81,18 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         success: "Thank you! Your response has been sent.",
         serverError: "Something went wrong. Please try again.",
         networkError: "Could not send your response. Please try again in a moment.",
+        rateLimitError: "Please wait a moment before sending another RSVP.",
+        validationInviteCode: "Please enter your invitation code.",
+        validationFullName: "Please enter your full name.",
+        validationAttendance: "Please select whether you can attend.",
+        validationGuestCount: "Please choose a valid number of guests.",
+        validationAdditionalGuests: "Please complete all additional guest names.",
       },
       fr: {
         kicker: "Réponse des invites",
         title: "RSVP",
         inviteCode: "Code d'invitation *",
-        inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation.",
+        inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation. ",
         checkingCode: "Vérification du code...",
         inviteFoundPrefix: "Invitation trouvée pour",
         inviteLimitPrefix: "Cette invitation permet jusqu'à",
@@ -105,6 +111,12 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         success: "Merci! Votre réponse a bien été envoyée.",
         serverError: "Une erreur est survenue. Veuillez réessayer.",
         networkError: "Impossible d'envoyer votre réponse pour le moment. Veuillez réessayer.",
+        rateLimitError: "Veuillez patienter un moment avant d'envoyer une autre réponse.",
+        validationInviteCode: "Veuillez saisir votre code d'invitation.",
+        validationFullName: "Veuillez saisir votre nom complet.",
+        validationAttendance: "Veuillez indiquer si vous serez présent(e).",
+        validationGuestCount: "Veuillez sélectionner un nombre de personnes valide.",
+        validationAdditionalGuests: "Veuillez compléter les noms des personnes accompagnatrices.",
       },
     }),
     []
@@ -113,6 +125,23 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const t = copy[locale];
   const additionalGuestsCount =
     form.attendance === "yes" ? Math.max(0, Number.parseInt(form.guestCount, 10) - 1) : 0;
+
+  const getLocalizedFieldError = (field: string) => {
+    switch (field) {
+      case "inviteCode":
+        return t.validationInviteCode;
+      case "fullName":
+        return t.validationFullName;
+      case "attendance":
+        return t.validationAttendance;
+      case "guestCount":
+        return t.validationGuestCount;
+      case "additionalGuestNames":
+        return t.validationAdditionalGuests;
+      default:
+        return t.serverError;
+    }
+  };
 
   useEffect(() => {
     setForm((prev) => {
@@ -214,7 +243,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       for (const issue of parsed.error.issues) {
         const field = issue.path[0];
         if (typeof field === "string" && !nextErrors[field]) {
-          nextErrors[field] = issue.message;
+          nextErrors[field] = getLocalizedFieldError(field);
         }
       }
       setErrors(nextErrors);
@@ -247,7 +276,17 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
       const data = await response.json();
       if (!response.ok) {
-        setStatusMessage(data?.error ?? t.serverError);
+        if (response.status === 429) {
+          setStatusMessage(t.rateLimitError);
+        } else if (response.status === 400 && typeof data?.error === "string") {
+          if (data.error.includes("Invitation code not found")) {
+            setStatusMessage(t.invalidCode);
+          } else {
+            setStatusMessage(t.serverError);
+          }
+        } else {
+          setStatusMessage(t.serverError);
+        }
         return;
       }
 
