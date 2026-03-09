@@ -61,7 +61,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       en: {
         kicker: "Guest Response",
         title: "RSVP",
-        deadline: "Please send your response by July 1st, 2026.",
         inviteCode: "Invitation code *",
         inviteCodeHint: "Use the code included in your invitation email or link.",
         checkingCode: "Checking code...",
@@ -86,9 +85,8 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       fr: {
         kicker: "Réponse des invites",
         title: "RSVP",
-        deadline: "Merci de répondre avant le 1er juillet 2026.",
         inviteCode: "Code d'invitation *",
-        inviteCodeHint: "Utilisez le code reçu dans votre email d'invitation.",
+        inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation.",
         checkingCode: "Vérification du code...",
         inviteFoundPrefix: "Invitation trouvée pour",
         inviteLimitPrefix: "Cette invitation permet jusqu'à",
@@ -273,9 +271,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.kicker}</p>
         <h2 className="font-display text-5xl leading-none">{t.title}</h2>
-        <p className="inline-block rounded-xl border border-[var(--border-muted)] bg-white/70 px-3 py-2 text-sm leading-6">
-          {t.deadline}
-        </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">

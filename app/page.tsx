@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/food-optimized.jpg", "/food-optimized.jpg", "/food-optimized.jpg"];
+const photoImagePaths = ["/standing_couple_hero.jpg", "/chest_couple_bottom2.jpg", "/ring_2_bottom2.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -52,7 +52,7 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
         heroDate: "15 août 2026",
-        intro: "Nous saurions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.",
+        intro: <>Nous saurions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
@@ -151,26 +151,34 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hidden gap-3 sm:grid sm:grid-cols-3">
-              {photoImagePaths.slice(0, 3).map((src, index) => (
-                <figure
-                  key={index}
-                  className={`group relative overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] ${
-                    index === 1 ? "aspect-[3/4] -mt-3 shadow-[0_14px_36px_rgba(51,44,48,0.14)]" : "aspect-[4/5] mt-3"
-                  }`}
-                >
-                  <Image
-                    src={src}
-                    alt={t.heroPhotoAlts[index] ?? `Couple photo ${index + 1}`}
-                    fill
-                    className={`object-cover transition duration-500 ${
-                      index === 1 ? "scale-[1.03] saturate-110" : "group-hover:scale-[1.02]"
-                    }`}
-                    sizes="(min-width: 1024px) 320px, (min-width: 640px) 33vw, 100vw"
-                    priority={index === 1}
-                  />
-                </figure>
-              ))}
+            <div className="hidden w-full space-y-3 sm:block">
+              <figure className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[16/9]">
+                <Image
+                  src={photoImagePaths[0]}
+                  alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 832px, 100vw"
+                  priority
+                />
+              </figure>
+
+              <div className="grid w-full grid-cols-2 gap-3">
+                {photoImagePaths.slice(1, 3).map((src, index) => (
+                  <figure
+                    key={`${src}-${index}`}
+                    className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                  >
+                    <Image
+                      src={src}
+                      alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 400px, 50vw"
+                    />
+                  </figure>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -217,6 +225,16 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <figure className="relative mx-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
+          <Image
+            src="/laughing_couple_bottomPage.jpg"
+            alt="Georges and Christella laughing together"
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 832px, 100vw"
+          />
+        </figure>
 
         <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
         
