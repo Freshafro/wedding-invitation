@@ -153,7 +153,7 @@ export default function Home() {
             </div> */}
 
             <div className="w-full space-y-3">
-              <figure className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[16/9]">
+              <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
                 <Image
                   src={photoImagePaths[0]}
                   alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
@@ -168,7 +168,7 @@ export default function Home() {
                 {photoImagePaths.slice(1, 3).map((src, index) => (
                   <figure
                     key={`${src}-${index}`}
-                    className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                    className="relative aspect-[4/4] overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
                   >
                     <Image
                       src={src}
@@ -203,7 +203,7 @@ export default function Home() {
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montreal%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold underline underline-offset-4"
+                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-sm font-semibold text-[#332c30] transition hover:opacity-90"
                 >
                   {t.openMap}
                 </a>
@@ -218,7 +218,7 @@ export default function Home() {
                   href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-block text-sm font-semibold underline underline-offset-4"
+                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90"
                 >
                   {t.openMap}
                 </a>
@@ -227,7 +227,7 @@ export default function Home() {
           </div>
         </section>
 
-        <figure className="relative mx-auto w-full max-w-2xl overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
+        <figure className="relative mx-auto w-full max-w-2xl overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
           <Image
             src="/laughing_couple_bottomPage.jpg"
             alt="Georges and Christella laughing together"
