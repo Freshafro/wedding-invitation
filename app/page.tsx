@@ -131,7 +131,8 @@ export default function Home() {
           <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
           <div className="space-y-4">
-            <div className="sm:hidden">
+            {/* Mobile-specific horizontal snap gallery is temporarily disabled for testing. */}
+            {/* <div className="sm:hidden">
               <div className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {photoImagePaths.slice(0, 3).map((src, index) => (
                   <figure
@@ -149,9 +150,9 @@ export default function Home() {
                   </figure>
                 ))}
               </div>
-            </div>
+            </div> */}
 
-            <div className="hidden w-full space-y-3 sm:block">
+            <div className="w-full space-y-3">
               <figure className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[16/9]">
                 <Image
                   src={photoImagePaths[0]}
