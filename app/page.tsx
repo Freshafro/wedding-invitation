@@ -160,7 +160,6 @@ export default function Home() {
                   fill
                   className={`object-cover ${photoImagePaths[0] === "/4R4A4421.jpg" ? "object-[center_22%]" : ""}`}
                   sizes="(min-width: 1024px) 832px, 100vw"
-                  quality={90}
                   priority
                 />
               </figure>
@@ -205,7 +204,7 @@ export default function Home() {
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montreal%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-sm font-semibold text-[#332c30] transition hover:opacity-90"
+                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90"
                 >
                   {t.openMap}
                 </a>
@@ -243,7 +242,6 @@ export default function Home() {
               fill
               className={`object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-[center_12%]" : ""}`}
               sizes="(min-width: 1024px) 832px, 100vw"
-              quality={90}
             />
           </figure>
 
