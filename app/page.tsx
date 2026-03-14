@@ -176,7 +176,7 @@ export default function Home() {
                       fill
                       className={`object-cover ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
-                      quality={90}
+                      quality={src === "/4R4A4401.jpg" ? 95 : 90}
                     />
                   </figure>
                 ))}
@@ -184,13 +184,13 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-5 flex items-center justify-center gap-3 py-0.5 sm:mt-0" aria-hidden>
+          <div className="my-10 flex items-center justify-center gap-3 py-0.5" aria-hidden>
             <span className="h-px w-16 bg-[var(--border-muted)]/70" />
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
             <span className="h-px w-16 bg-[var(--border-muted)]/70" />
           </div>
 
-          <div className="-mt-7 rounded-3xl p-6 sm:p-7">
+          <div className="rounded-3xl">
             <h2 className="font-display text-2xl sm:text-3xl">{t.scheduleTitle}</h2>
             <p className="mt-2">{t.dateLabel}</p>
 
@@ -228,13 +228,13 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="mt-6 space-y-6">
-          <div className="mt-2 flex items-center justify-center gap-3 py-0.5" aria-hidden>
-            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
-            <span className="h-px w-16 bg-[var(--border-muted)]/70" />
-          </div>
+        <div className="my-10 flex items-center justify-center gap-3 py-0.5" aria-hidden>
+          <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
+          <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+        </div>
 
+        <div className="space-y-6">
           <figure className="relative mx-auto w-full max-w-2xl overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src={photoImagePaths[3]}
