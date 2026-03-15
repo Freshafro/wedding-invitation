@@ -153,7 +153,7 @@ export default function Home() {
             </div> */}
 
             <div className="w-full space-y-3">
-              <figure className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]">
+              <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
                 <Image
                   src={photoImagePaths[0]}
                   alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
