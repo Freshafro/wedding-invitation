@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4421.jpg", "/4R4A4249.jpg", "/4R4A4401-2.jpg", "/4R4A4353.jpg"];
+const photoImagePaths = ["/4R4A4298.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -158,7 +158,7 @@ export default function Home() {
                   src={photoImagePaths[0]}
                   alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
                   fill
-                  className={`object-cover ${photoImagePaths[0] === "/4R4A4421.jpg" ? "object-[center_22%]" : ""}`}
+                  className={`object-cover ${photoImagePaths[0] === "/4R4A4298.jpg" ? "object-[center_22%]" : ""}`}
                   sizes="(min-width: 1024px) 832px, 100vw"
                   unoptimized
                   priority
