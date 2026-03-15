@@ -162,6 +162,8 @@ export default function Home() {
                   sizes="(min-width: 1024px) 832px, 100vw"
                   unoptimized
                   draggable={false}
+                  onContextMenu={(event) => event.preventDefault()}
+                  onDragStart={(event) => event.preventDefault()}
                   priority
                 />
               </figure>
@@ -180,6 +182,8 @@ export default function Home() {
                       sizes="(min-width: 1024px) 400px, 50vw"
                       unoptimized
                       draggable={false}
+                      onContextMenu={(event) => event.preventDefault()}
+                      onDragStart={(event) => event.preventDefault()}
                     />
                   </figure>
                 ))}
@@ -248,6 +252,8 @@ export default function Home() {
               sizes="(min-width: 1024px) 832px, 100vw"
               unoptimized
               draggable={false}
+              onContextMenu={(event) => event.preventDefault()}
+              onDragStart={(event) => event.preventDefault()}
             />
           </figure>
 
