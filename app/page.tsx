@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4365.jpg"];
+const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -237,12 +237,12 @@ export default function Home() {
         </div>
 
         <div className="space-y-10">
-          <figure className="relative mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[12/11] sm:aspect-[11/10]">
+          <figure className="relative mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src={photoImagePaths[3]}
               alt="Georges and Christella laughing together"
               fill
-              className={`object-cover ${photoImagePaths[3] === "/4R4A4365.jpg" ? "object-[center_45%]" : ""}`}
+              className={`object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-center" : ""}`}
               sizes="(min-width: 1024px) 832px, 100vw"
               unoptimized
             />
