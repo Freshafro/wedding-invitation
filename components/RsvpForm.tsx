@@ -4,9 +4,25 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { rsvpSchema } from "@/lib/validation";
 
-type FieldErrors = Partial<Record<string, string>>;
+type FieldErrorCode =
+  | "validationInviteCode"
+  | "validationFullName"
+  | "validationAttendance"
+  | "validationGuestCount"
+  | "validationAdditionalGuests"
+  | "invalidCode"
+  | "inviteLimit"
+  | "serverError";
+
+type FieldError = {
+  code: FieldErrorCode;
+  maxGuestsAllowed?: number;
+};
+
+type FieldErrors = Partial<Record<string, FieldError>>;
 type FormSubmitEvent = Parameters<NonNullable<React.ComponentProps<"form">["onSubmit"]>>[0];
 type Locale = "en" | "fr";
+type StatusCode = "success" | "serverError" | "networkError" | "rateLimitError" | "invalidCode";
 type InviteLookup = {
   inviteCode: string;
   householdName: string;
@@ -27,7 +43,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [statusMessage, setStatusMessage] = useState<string>("");
+  const [statusCode, setStatusCode] = useState<StatusCode | "">("");
   const [inviteLookup, setInviteLookup] = useState<InviteLookup | null>(null);
   const [isCheckingInvite, setIsCheckingInvite] = useState(false);
   const searchParams = useSearchParams();
@@ -89,7 +105,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         validationAdditionalGuests: "Please complete all additional guest names.",
       },
       fr: {
-        kicker: "Réponse des invites",
+        kicker: "Réponse des invités",
         title: "RSVP",
         inviteCode: "Code d'invitation *",
         inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation. ",
@@ -97,13 +113,13 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         inviteFoundPrefix: "Invitation trouvée pour",
         inviteLimitPrefix: "Cette invitation permet jusqu'à",
         inviteLimitSuffix: "personne(s).",
-        invalidCode: "Code d'invitation introuvable. Veuillez vérifier votre email/code.",
+        invalidCode: "Code d'invitation introuvable. Veuillez vérifier votre courriel ou votre code.",
         fullName: "Nom complet *",
         attendance: "Serez-vous présent(e) ? *",
         yesOption: "Oui, avec plaisir",
         noOption: "Non, je ne pourrai pas être présent(e)",
         partySize: "Nombre de personnes *",
-        additionalGuestNames: "Noms complet des personnes qui vous accompagnent",
+        additionalGuestNames: "Noms complets des personnes qui vous accompagnent",
         additionalGuestLabel: "Accompagnateur(trice)",
         dietary: "Restrictions alimentaires",
         submit: "Envoyer ma réponse",
@@ -123,25 +139,70 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   );
 
   const t = copy[locale];
+  const errorTextClass = "text-xs leading-5 text-red-600";
+  const fieldControlClass =
+    "w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 text-base leading-6 transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/35 focus-visible:ring-offset-1 focus:border-[#332c30]/50";
   const additionalGuestsCount =
     form.attendance === "yes" ? Math.max(0, Number.parseInt(form.guestCount, 10) - 1) : 0;
 
-  const getLocalizedFieldError = (field: string) => {
+  const getValidationErrorCode = (field: string): FieldErrorCode => {
     switch (field) {
       case "inviteCode":
-        return t.validationInviteCode;
+        return "validationInviteCode";
       case "fullName":
-        return t.validationFullName;
+        return "validationFullName";
       case "attendance":
-        return t.validationAttendance;
+        return "validationAttendance";
       case "guestCount":
-        return t.validationGuestCount;
+        return "validationGuestCount";
       case "additionalGuestNames":
+        return "validationAdditionalGuests";
+      default:
+        return "serverError";
+    }
+  };
+
+  const getFieldErrorMessage = (error: FieldError) => {
+    switch (error.code) {
+      case "validationInviteCode":
+        return t.validationInviteCode;
+      case "validationFullName":
+        return t.validationFullName;
+      case "validationAttendance":
+        return t.validationAttendance;
+      case "validationGuestCount":
+        return t.validationGuestCount;
+      case "validationAdditionalGuests":
         return t.validationAdditionalGuests;
+      case "invalidCode":
+        return t.invalidCode;
+      case "inviteLimit":
+        return `${t.inviteLimitPrefix} ${error.maxGuestsAllowed ?? 0} ${t.inviteLimitSuffix}`;
+      case "serverError":
       default:
         return t.serverError;
     }
   };
+
+  const getStatusMessage = (code: StatusCode) => {
+    switch (code) {
+      case "success":
+        return t.success;
+      case "serverError":
+        return t.serverError;
+      case "networkError":
+        return t.networkError;
+      case "rateLimitError":
+        return t.rateLimitError;
+      case "invalidCode":
+      default:
+        return t.invalidCode;
+    }
+  };
+
+  const isSuccessStatus = statusCode === "success";
+  const getFieldControlClass = (hasError: boolean) =>
+    `${fieldControlClass} ${hasError ? "border-red-500 focus-visible:ring-red-200 focus:border-red-500" : ""}`;
 
   useEffect(() => {
     setForm((prev) => {
@@ -235,7 +296,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
   const handleSubmit = async (event: FormSubmitEvent) => {
     event.preventDefault();
-    setStatusMessage("");
+    setStatusCode("");
 
     const parsed = rsvpSchema.safeParse(form);
     if (!parsed.success) {
@@ -243,7 +304,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       for (const issue of parsed.error.issues) {
         const field = issue.path[0];
         if (typeof field === "string" && !nextErrors[field]) {
-          nextErrors[field] = getLocalizedFieldError(field);
+          nextErrors[field] = { code: getValidationErrorCode(field) };
         }
       }
       setErrors(nextErrors);
@@ -251,14 +312,17 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
     }
 
     if (!inviteLookup) {
-      setErrors((prev) => ({ ...prev, inviteCode: t.invalidCode }));
+      setErrors((prev) => ({ ...prev, inviteCode: { code: "invalidCode" } }));
       return;
     }
 
     if (parsed.data.guestCount > inviteLookup.maxGuestsAllowed) {
       setErrors((prev) => ({
         ...prev,
-        guestCount: `${t.inviteLimitPrefix} ${inviteLookup.maxGuestsAllowed} ${t.inviteLimitSuffix}`,
+        guestCount: {
+          code: "inviteLimit",
+          maxGuestsAllowed: inviteLookup.maxGuestsAllowed,
+        },
       }));
       return;
     }
@@ -277,26 +341,26 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       const data = await response.json();
       if (!response.ok) {
         if (response.status === 429) {
-          setStatusMessage(t.rateLimitError);
+          setStatusCode("rateLimitError");
         } else if (response.status === 400 && typeof data?.error === "string") {
           if (data.error.includes("Invitation code not found")) {
-            setStatusMessage(t.invalidCode);
+            setStatusCode("invalidCode");
           } else {
-            setStatusMessage(t.serverError);
+            setStatusCode("serverError");
           }
         } else {
-          setStatusMessage(t.serverError);
+          setStatusCode("serverError");
         }
         return;
       }
 
-      setStatusMessage(t.success);
+      setStatusCode("success");
       setForm((prev) => ({
         ...initialForm,
         inviteCode: prev.inviteCode,
       }));
     } catch {
-      setStatusMessage(t.networkError);
+      setStatusCode("networkError");
     } finally {
       setIsSubmitting(false);
     }
@@ -304,48 +368,62 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
   return (
     <form
-      className="space-y-6 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 shadow-[0_14px_36px_rgba(51,44,48,0.12)]"
+      className="space-y-7 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-6 shadow-[0_14px_36px_rgba(51,44,48,0.12)] sm:p-7"
       onSubmit={handleSubmit}
+      aria-busy={isSubmitting}
     >
       <div className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.kicker}</p>
-        <h2 className="font-display text-5xl leading-none">{t.title}</h2>
+        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
+        <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.title}</h2>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.inviteCode}</span>
           <input
-            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 font-semibold uppercase tracking-wide focus:outline-none"
+            className={`${getFieldControlClass(Boolean(errors.inviteCode))} font-semibold uppercase tracking-wide`}
             value={form.inviteCode}
             onChange={(e) => setForm((prev) => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
             autoCapitalize="characters"
             autoCorrect="off"
+            autoComplete="off"
+            spellCheck={false}
+            aria-invalid={Boolean(errors.inviteCode)}
           />
-          <span className="text-xs">
+          <span className="text-xs leading-5 text-[#5c5358]" aria-live="polite">
             {isCheckingInvite
               ? t.checkingCode
               : inviteLookup
                 ? `${t.inviteFoundPrefix} ${inviteLookup.householdName}. ${t.inviteLimitPrefix} ${inviteLookup.maxGuestsAllowed} ${t.inviteLimitSuffix}`
                 : t.inviteCodeHint}
           </span>
-          {errors.inviteCode ? <span className="text-xs">{errors.inviteCode}</span> : null}
+          {errors.inviteCode ? (
+            <span className={errorTextClass} role="alert">
+              {getFieldErrorMessage(errors.inviteCode)}
+            </span>
+          ) : null}
         </label>
 
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.fullName}</span>
           <input
-            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
+            className={getFieldControlClass(Boolean(errors.fullName))}
             value={form.fullName}
             onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
+            autoComplete="name"
+            aria-invalid={Boolean(errors.fullName)}
           />
-          {errors.fullName ? <span className="text-xs">{errors.fullName}</span> : null}
+          {errors.fullName ? (
+            <span className={errorTextClass} role="alert">
+              {getFieldErrorMessage(errors.fullName)}
+            </span>
+          ) : null}
         </label>
 
         <label className="space-y-1">
           <span className="block text-sm font-medium">{t.attendance}</span>
           <select
-            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
+            className={getFieldControlClass(Boolean(errors.attendance))}
             value={form.attendance}
             onChange={(e) => {
               const attendance = e.target.value;
@@ -355,24 +433,34 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
                 guestCount: attendance === "yes" ? (prev.guestCount === "0" ? "1" : prev.guestCount) : "0",
               }));
             }}
+            aria-invalid={Boolean(errors.attendance)}
           >
             <option value="yes">{t.yesOption}</option>
             <option value="no">{t.noOption}</option>
           </select>
-          {errors.attendance ? <span className="text-xs">{errors.attendance}</span> : null}
+          {errors.attendance ? (
+            <span className={errorTextClass} role="alert">
+              {getFieldErrorMessage(errors.attendance)}
+            </span>
+          ) : null}
         </label>
 
         <label className="space-y-1">
           <span className="block text-sm font-medium">{t.partySize}</span>
           <select
-            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
+            className={getFieldControlClass(Boolean(errors.guestCount))}
             value={form.guestCount}
             onChange={(e) => setForm((prev) => ({ ...prev, guestCount: e.target.value }))}
             disabled={form.attendance === "no" || !inviteLookup}
+            aria-invalid={Boolean(errors.guestCount)}
           >
             {guestCountOptions}
           </select>
-          {errors.guestCount ? <span className="text-xs">{errors.guestCount}</span> : null}
+          {errors.guestCount ? (
+            <span className={errorTextClass} role="alert">
+              {getFieldErrorMessage(errors.guestCount)}
+            </span>
+          ) : null}
         </label>
 
         {additionalGuestsCount > 0 ? (
@@ -385,7 +473,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
                     {t.additionalGuestLabel} {index + 1} *
                   </span>
                   <input
-                    className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
+                    className={getFieldControlClass(Boolean(errors.additionalGuestNames))}
                     value={value}
                     onChange={(e) =>
                       setForm((prev) => {
@@ -399,7 +487,9 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
               ))}
             </div>
             {errors.additionalGuestNames ? (
-              <span className="text-xs">{errors.additionalGuestNames}</span>
+              <span className={errorTextClass} role="alert">
+                {getFieldErrorMessage(errors.additionalGuestNames)}
+              </span>
             ) : null}
           </div>
         ) : null}
@@ -407,12 +497,17 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.dietary}</span>
           <textarea
-            className="w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 focus:outline-none"
+            className={getFieldControlClass(Boolean(errors.dietaryNotes))}
             rows={3}
             value={form.dietaryNotes}
             onChange={(e) => setForm((prev) => ({ ...prev, dietaryNotes: e.target.value }))}
+            aria-invalid={Boolean(errors.dietaryNotes)}
           />
-          {errors.dietaryNotes ? <span className="text-xs">{errors.dietaryNotes}</span> : null}
+          {errors.dietaryNotes ? (
+            <span className={errorTextClass} role="alert">
+              {getFieldErrorMessage(errors.dietaryNotes)}
+            </span>
+          ) : null}
         </label>
 
         <label className="hidden" aria-hidden>
@@ -423,14 +518,17 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
 
       <button
         type="submit"
-        className="w-full rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={isSubmitting}
+        aria-disabled={isSubmitting}
       >
         {isSubmitting ? t.submitting : t.submit}
       </button>
 
-      {statusMessage ? (
-        <p className="text-sm">{statusMessage}</p>
+      {statusCode ? (
+        <p className={`text-sm font-medium ${isSuccessStatus ? "text-emerald-700" : "text-red-600"}`} aria-live="polite">
+          {getStatusMessage(statusCode)}
+        </p>
       ) : null}
     </form>
   );

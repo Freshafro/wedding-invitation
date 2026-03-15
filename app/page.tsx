@@ -23,7 +23,7 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
         heroDate: "August 15, 2026",
-        intro: "We would be so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
+        closingMessage: "We would be so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
         announcement: (
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
@@ -52,7 +52,7 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
         heroDate: "15 août 2026",
-        intro: <>Nous saurions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
+        closingMessage: <>Nous serions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
@@ -91,7 +91,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setLocale("en")}
-                className={`rounded-full px-4 py-2 transition ${
+                className={`rounded-full px-4 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
                   locale === "en"
                     ? "bg-[#332c30] text-white"
                     : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
@@ -102,7 +102,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setLocale("fr")}
-                className={`rounded-full px-4 py-2 transition ${
+                className={`rounded-full px-4 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
                   locale === "fr"
                     ? "bg-[#332c30] text-white"
                     : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
@@ -128,7 +128,7 @@ export default function Home() {
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
-          <p className="font-display text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
+          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
           <div className="space-y-4">
             {/* Mobile-specific horizontal snap gallery is temporarily disabled for testing. */}
@@ -168,7 +168,7 @@ export default function Home() {
                 {photoImagePaths.slice(1, 3).map((src, index) => (
                   <figure
                     key={`${src}-${index}`}
-                    className="relative aspect-[4/4] overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                    className="relative aspect-[4/4] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
                   >
                     <Image
                       src={src}
@@ -190,36 +190,37 @@ export default function Home() {
             <span className="h-px w-16 bg-[var(--border-muted)]/70" />
           </div>
 
-          <div className="rounded-3xl">
-            <h2 className="font-display text-2xl sm:text-3xl">{t.scheduleTitle}</h2>
-            <p className="mt-2">{t.dateLabel}</p>
-
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
-                <h3 className="font-display text-xl sm:text-2xl">{t.ceremonyTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em]">{t.ceremonyTime}</p>
-                <p className="mt-2">{t.ceremonyVenue}</p>
-                <p className="mt-3">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
+          <div className="space-y-5 rounded-3xl">
+            <div className="space-y-2">
+              <h2 className="font-display text-2xl leading-tight sm:text-3xl">{t.scheduleTitle}</h2>
+              <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
+                <h3 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.ceremonyTitle}</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#5c5358] sm:text-sm">{t.ceremonyTime}</p>
+                <p className="text-[15px] leading-7">{t.ceremonyVenue}</p>
+                <p className="text-[15px] leading-7 text-[#5c5358]">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montreal%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
                 >
                   {t.openMap}
                 </a>
               </article>
 
-              <article className="rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
-                <h3 className="font-display text-xl sm:text-2xl">{t.receptionTitle}</h3>
-                <p className="mt-2 text-sm font-semibold uppercase tracking-[0.12em]">{t.receptionTime}</p>
-                <p className="mt-2">{t.receptionVenue}</p>
-                <p className="mt-3">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
+              <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
+                <h3 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.receptionTitle}</h3>
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#5c5358] sm:text-sm">{t.receptionTime}</p>
+                <p className="text-[15px] leading-7">{t.receptionVenue}</p>
+                <p className="text-[15px] leading-7 text-[#5c5358]">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-3 inline-flex items-center justify-center rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90"
+                  className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
                 >
                   {t.openMap}
                 </a>
@@ -234,8 +235,8 @@ export default function Home() {
           <span className="h-px w-16 bg-[var(--border-muted)]/70" />
         </div>
 
-        <div className="space-y-6">
-          <figure className="relative mx-auto w-full max-w-2xl overflow-hidden 2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
+        <div className="space-y-10">
+          <figure className="relative mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
             <Image
               src={photoImagePaths[3]}
               alt="Georges and Christella laughing together"
@@ -245,7 +246,7 @@ export default function Home() {
             />
           </figure>
 
-          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.intro}</p>
+          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.closingMessage}</p>
 
           <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
             <RsvpForm locale={locale} />
