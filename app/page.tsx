@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4298.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4353.jpg"];
+const photoImagePaths = ["/4R4A4421.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -153,12 +153,12 @@ export default function Home() {
             </div> */}
 
             <div className="w-full space-y-3">
-              <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+              <figure className="relative aspect-[4/3] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]">
                 <Image
                   src={photoImagePaths[0]}
                   alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
                   fill
-                  className={`object-cover ${photoImagePaths[0] === "/4R4A4298.jpg" ? "object-[center_22%]" : ""}`}
+                  className={`object-cover ${photoImagePaths[0] === "/4R4A4421.jpg" ? "object-[center_22%]" : ""}`}
                   sizes="(min-width: 1024px) 832px, 100vw"
                   unoptimized
                   priority
@@ -178,7 +178,6 @@ export default function Home() {
                       className={`object-cover ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
                       unoptimized
-                      // quality={src === "/4R4A4401-2.jpg" ? 95 : 90}
                     />
                   </figure>
                 ))}
@@ -243,7 +242,7 @@ export default function Home() {
               src={photoImagePaths[3]}
               alt="Georges and Christella laughing together"
               fill
-              className={`object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-[center_12%]" : ""}`}
+              className={`object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-center" : ""}`}
               sizes="(min-width: 1024px) 832px, 100vw"
               unoptimized
             />
