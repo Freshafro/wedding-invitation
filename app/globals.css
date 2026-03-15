@@ -38,3 +38,10 @@ html {
   font-family: var(--font-bodoni-moda), "Times New Roman", serif;
 }
 
+.no-image-save {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+

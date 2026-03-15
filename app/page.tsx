@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
       <div className="relative mx-auto w-full max-w-3xl">
-        <section className="space-y-10">
+        <section>
           <div className="flex justify-end">
             <div className="inline-flex items-center gap-1 rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] p-1 text-xs font-semibold uppercase tracking-[0.12em]">
               <button
@@ -113,14 +113,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="mt-10 space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
             <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
               {t.coupleNames}
             </h1>
           </div>
 
-          <div className="flex items-center gap-4" aria-hidden>
+          <div className="mt-5 mb-10 flex items-center gap-4" aria-hidden>
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
             <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em]">
               {t.heroDate}
@@ -128,9 +128,9 @@ export default function Home() {
             <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
           </div>
 
-          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
+          <p className="my-10 font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
-          <div className="space-y-4">
+          <div className="mt-10 space-y-4">
             {/* Mobile-specific horizontal snap gallery is temporarily disabled for testing. */}
             {/* <div className="sm:hidden">
               <div className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -158,9 +158,10 @@ export default function Home() {
                   src={photoImagePaths[0]}
                   alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
                   fill
-                  className={`object-cover ${photoImagePaths[0] === "/4R4A4423.jpg" ? "object-[center_16%]" : ""}`}
+                  className={`no-image-save object-cover ${photoImagePaths[0] === "/4R4A4423.jpg" ? "object-[center_16%]" : ""}`}
                   sizes="(min-width: 1024px) 832px, 100vw"
                   unoptimized
+                  draggable={false}
                   priority
                 />
               </figure>
@@ -175,9 +176,10 @@ export default function Home() {
                       src={src}
                       alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
                       fill
-                      className={`object-cover ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
+                      className={`no-image-save object-cover ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
                       unoptimized
+                      draggable={false}
                     />
                   </figure>
                 ))}
@@ -242,9 +244,10 @@ export default function Home() {
               src={photoImagePaths[3]}
               alt="Georges and Christella laughing together"
               fill
-              className={`object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-center" : ""}`}
+              className={`no-image-save object-cover ${photoImagePaths[3] === "/4R4A4353.jpg" ? "object-center" : ""}`}
               sizes="(min-width: 1024px) 832px, 100vw"
               unoptimized
+              draggable={false}
             />
           </figure>
 

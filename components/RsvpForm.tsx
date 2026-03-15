@@ -381,7 +381,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
         <label className="space-y-1 sm:col-span-2">
           <span className="block text-sm font-medium">{t.inviteCode}</span>
           <input
-            className={`${getFieldControlClass(Boolean(errors.inviteCode))} font-semibold uppercase tracking-wide`}
+            className={`${getFieldControlClass(Boolean(errors.inviteCode))} lining-nums tabular-nums uppercase tracking-wide`}
             value={form.inviteCode}
             onChange={(e) => setForm((prev) => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
             autoCapitalize="characters"
