@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4421.jpg", "/4R4A4249.jpg", "/4R4A4319.jpg", "/4R4A4353.jpg"];
+const photoImagePaths = ["/4R4A4421.jpg", "/4R4A4249.jpg", "/4R4A4401-2.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -176,7 +176,7 @@ export default function Home() {
                       fill
                       className={`object-cover ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
-                      quality={src === "/4R4A4319.jpg" ? 95 : 90}
+                      // quality={src === "/4R4A4232.jpg" ? 95 : 90}
                     />
                   </figure>
                 ))}
