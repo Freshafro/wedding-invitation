@@ -23,12 +23,6 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
         heroDate: "August 15, 2026",
-        closingMessage: (
-          <>
-            We would be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
-            <strong>July 1, 2026</strong>.
-          </>
-        ),
         announcement: (
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
@@ -52,12 +46,18 @@ export default function Home() {
           "Georges and Christella portrait",
           "Georges and Christella candid moment",
         ],
+        closingMessage: (
+          <>
+            We would be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
+            <strong>July 1, 2026</strong>.
+          </>
+        ),
+        maxPeoplePerInvitation: "Please note that there is a maximum number of people per invitation code and that children under the age of 16 are unfortunately not allowed to attend the reception.",
       },
       fr: {
         coupleNames: "Georges & Christella",
         heroKicker: "Nous nous marions",
         heroDate: "15 août 2026",
-        closingMessage: <>Nous serions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
         announcement: (
           <>
             C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
@@ -80,6 +80,8 @@ export default function Home() {
           "Portrait de Georges et Christella",
           "Moment spontané de Georges et Christella",
         ],
+        closingMessage: <>Nous serions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
+        maxPeoplePerInvitation: "Prenez note qu'il y a un nombre maximum de personnes par code d'invitation et que les enfants de moins de 16 ans ne sont malheureusement pas autorisés à participer à la réception.",
       },
     }),
     []
@@ -262,7 +264,11 @@ export default function Home() {
             />
           </figure>
 
-          <p className="font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.closingMessage}</p>
+          <p className="font-display mx-auto mb-5 mt-10 w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.closingMessage}</p>
+
+          <p className="font-display mx-auto my-5 w-full max-w-prose text-lg leading-8 sm:text-xl text-center">
+            {t.maxPeoplePerInvitation}
+          </p>
 
           <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
             <RsvpForm locale={locale} />
