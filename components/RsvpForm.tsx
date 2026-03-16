@@ -77,6 +77,9 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       en: {
         kicker: "Guest Response",
         title: "RSVP",
+        thankYouTitle: "Thank you!",
+        thankYouMessage:
+          "Your response has been received successfully. We are so excited to celebrate with you.",
         inviteCode: "Invitation code *",
         inviteCodeHint: "Use the code included in your invitation email or link. ",
         checkingCode: "Checking code...",
@@ -107,6 +110,9 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       fr: {
         kicker: "Réponse des invités",
         title: "RSVP",
+        thankYouTitle: "Merci!",
+        thankYouMessage:
+          "Votre réponse a bien été reçue.",
         inviteCode: "Code d'invitation *",
         inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation. ",
         checkingCode: "Vérification du code...",
@@ -365,6 +371,15 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       setIsSubmitting(false);
     }
   };
+
+  if (isSuccessStatus) {
+    return (
+      <div className="space-y-4 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-6 text-center shadow-[0_14px_36px_rgba(51,44,48,0.12)] sm:p-7">
+        <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.thankYouTitle}</h2>
+        <p className="mx-auto max-w-prose text-lg leading-8 sm:text-xl">{t.thankYouMessage}</p>
+      </div>
+    );
+  }
 
   return (
     <form

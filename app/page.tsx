@@ -23,7 +23,12 @@ export default function Home() {
         coupleNames: "Georges & Christella",
         heroKicker: "We are getting married",
         heroDate: "August 15, 2026",
-        closingMessage: "We would be so excited to celebrate with you. Please RSVP below and let us know your attendance details.",
+        closingMessage: (
+          <>
+            We would be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
+            <strong>July 1, 2026</strong>.
+          </>
+        ),
         announcement: (
           <>
             With grateful hearts, the families of <strong>Samuel Simon Boum</strong> and{" "}
@@ -83,7 +88,7 @@ export default function Home() {
   const t = copy[locale];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-white px-5 py-10 sm:px-8">
+    <main className="relative min-h-screen overflow-hidden bg-white px-5 py-5 sm:px-8">
       <div className="relative mx-auto w-full max-w-3xl">
         <section>
           <div className="flex justify-end">
@@ -113,7 +118,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-10 space-y-4">
+          <div className="mt-5 space-y-4">
             <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
             <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
               {t.coupleNames}
