@@ -179,7 +179,7 @@ export default function Home() {
                 {photoImagePaths.slice(1, 3).map((src, index) => (
                   <figure
                     key={`${src}-${index}`}
-                    className="relative aspect-[4/4] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                    className="relative aspect-[9/10] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
                   >
                     <Image
                       src={src}
