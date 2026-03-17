@@ -33,7 +33,7 @@ const initialForm = {
   inviteCode: "",
   fullName: "",
   attendance: "yes",
-  guestCount: "1",
+  guestCount: "",
   additionalGuestNames: [] as string[],
   dietaryNotes: "",
   website: "",
@@ -49,28 +49,6 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const searchParams = useSearchParams();
 
   const maxGuestOptions = useMemo(() => inviteLookup?.maxGuestsAllowed ?? 10, [inviteLookup]);
-
-  const guestCountOptions = useMemo(
-    () => {
-      if (form.attendance === "no") {
-        return [
-          <option value="0" key="guest-count-0">
-            0
-          </option>,
-        ];
-      }
-
-      return Array.from({ length: maxGuestOptions }, (_, index) => {
-        const value = index + 1;
-        return (
-          <option value={String(value)} key={`guest-count-${value}`}>
-            {value}
-          </option>
-        );
-      });
-    },
-    [form.attendance, maxGuestOptions]
-  );
 
   const copy = useMemo(
     () => ({
@@ -148,8 +126,45 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
   const errorTextClass = "text-xs leading-5 text-red-600";
   const fieldControlClass =
     "w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 text-base leading-6 transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/35 focus-visible:ring-offset-1 focus:border-[#332c30]/50";
+  const parsedGuestCount = Number.parseInt(form.guestCount, 10);
   const additionalGuestsCount =
-    form.attendance === "yes" ? Math.max(0, Number.parseInt(form.guestCount, 10) - 1) : 0;
+    form.attendance === "yes" && Number.isFinite(parsedGuestCount)
+      ? Math.max(0, parsedGuestCount - 1)
+      : 0;
+  const guestCountOptions = useMemo(
+    () => {
+      if (!form.attendance) {
+        return [
+          <option value="" key="guest-count-placeholder">
+            {""}
+          </option>,
+        ];
+      }
+
+      if (form.attendance === "no") {
+        return [
+          <option value="0" key="guest-count-0">
+            0
+          </option>,
+        ];
+      }
+
+      return [
+        <option value="" key="guest-count-placeholder">
+          {""}
+        </option>,
+        ...Array.from({ length: maxGuestOptions }, (_, index) => {
+          const value = index + 1;
+          return (
+            <option value={String(value)} key={`guest-count-${value}`}>
+              {value}
+            </option>
+          );
+        }),
+      ];
+    },
+    [form.attendance, maxGuestOptions]
+  );
 
   const getValidationErrorCode = (field: string): FieldErrorCode => {
     switch (field) {
@@ -445,11 +460,19 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
               setForm((prev) => ({
                 ...prev,
                 attendance,
-                guestCount: attendance === "yes" ? (prev.guestCount === "0" ? "1" : prev.guestCount) : "0",
+                guestCount:
+                  attendance === "yes"
+                    ? prev.guestCount === "0"
+                      ? ""
+                      : prev.guestCount
+                    : attendance === "no"
+                      ? "0"
+                      : "",
               }));
             }}
             aria-invalid={Boolean(errors.attendance)}
           >
+            <option value="">{""}</option>
             <option value="yes">{t.yesOption}</option>
             <option value="no">{t.noOption}</option>
           </select>
@@ -466,7 +489,7 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
             className={getFieldControlClass(Boolean(errors.guestCount))}
             value={form.guestCount}
             onChange={(e) => setForm((prev) => ({ ...prev, guestCount: e.target.value }))}
-            disabled={form.attendance === "no" || !inviteLookup}
+            disabled={form.attendance !== "yes" || !inviteLookup}
             aria-invalid={Boolean(errors.guestCount)}
           >
             {guestCountOptions}
