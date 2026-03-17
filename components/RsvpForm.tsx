@@ -404,7 +404,7 @@ export function RsvpForm({
 
   return (
     <form
-      className="space-y-5 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-6 shadow-[0_14px_36px_rgba(51,44,48,0.12)] sm:space-y-7 sm:p-7"
+      className="space-y-6 rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-6 shadow-[0_14px_36px_rgba(51,44,48,0.12)] sm:space-y-7 sm:p-7"
       onSubmit={handleSubmit}
       aria-busy={isSubmitting}
     >
