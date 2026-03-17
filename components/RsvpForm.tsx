@@ -39,7 +39,13 @@ const initialForm = {
   website: "",
 };
 
-export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
+export function RsvpForm({
+  locale = "en",
+  maxPeoplePerInvitationMessage,
+}: {
+  locale?: Locale;
+  maxPeoplePerInvitationMessage?: React.ReactNode;
+}) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -405,6 +411,9 @@ export function RsvpForm({ locale = "en" }: { locale?: Locale }) {
       <div className="space-y-2">
         <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
         <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.title}</h2>
+        {maxPeoplePerInvitationMessage ? (
+          <p className="font-display mx-auto text-xs leading-none sm:text-base">{maxPeoplePerInvitationMessage}</p>
+        ) : null}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">

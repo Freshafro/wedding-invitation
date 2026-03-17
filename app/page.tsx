@@ -179,7 +179,7 @@ export default function Home() {
                 {photoImagePaths.slice(1, 3).map((src, index) => (
                   <figure
                     key={`${src}-${index}`}
-                    className="relative aspect-[9/10] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
+                    className="relative aspect-[9/10] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/4]"
                   >
                     <Image
                       src={src}
@@ -266,12 +266,8 @@ export default function Home() {
 
           <p className="font-display mx-auto mb-5 mt-10 w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.closingMessage}</p>
 
-          <p className="font-display mx-auto my-5 w-full max-w-prose text-lg leading-8 sm:text-xl text-center">
-            {t.maxPeoplePerInvitation}
-          </p>
-
           <Suspense fallback={<div className="rounded-3xl border border-[var(--border-muted)] bg-[var(--surface-soft)] p-7 text-sm">Loading RSVP form...</div>}>
-            <RsvpForm locale={locale} />
+            <RsvpForm locale={locale} maxPeoplePerInvitationMessage={t.maxPeoplePerInvitation} />
           </Suspense>
         </div>
       </div>
