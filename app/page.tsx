@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4401.jpg", "/4R4A4353.jpg"];
+const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4319.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
