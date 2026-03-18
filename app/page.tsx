@@ -12,7 +12,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4319-2.jpg", "/4R4A4353.jpg"];
+const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4319.jpg", "/4R4A4353.jpg"];
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("fr");
@@ -120,7 +120,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-5 space-y-4">
+          <div className="mt-5 space-y-5">
             <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
             <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
               {t.coupleNames}
