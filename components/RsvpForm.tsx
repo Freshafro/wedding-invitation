@@ -129,7 +129,7 @@ export function RsvpForm({
   );
 
   const t = copy[locale];
-  const errorTextClass = "text-xs leading-5 text-red-600";
+  const errorTextClass = "text-sm leading-5 text-red-600";
   const fieldControlClass =
     "w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 text-base leading-6 transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/35 focus-visible:ring-offset-1 focus:border-[#332c30]/50";
   const parsedGuestCount = Number.parseInt(form.guestCount, 10);
@@ -418,7 +418,7 @@ export function RsvpForm({
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium">{t.inviteCode}</span>
+          <span className="block text-base font-medium">{t.inviteCode}</span>
           <input
             className={`${getFieldControlClass(Boolean(errors.inviteCode))} lining-nums tabular-nums uppercase tracking-wide`}
             value={form.inviteCode}
@@ -429,7 +429,7 @@ export function RsvpForm({
             spellCheck={false}
             aria-invalid={Boolean(errors.inviteCode)}
           />
-          <span className="text-xs leading-5 text-[#5c5358]" aria-live="polite">
+          <span className="text-sm leading-5 text-[#4a4146]" aria-live="polite">
             {isCheckingInvite
               ? t.checkingCode
               : inviteLookup
@@ -444,7 +444,7 @@ export function RsvpForm({
         </label>
 
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium">{t.fullName}</span>
+          <span className="block text-base font-medium">{t.fullName}</span>
           <input
             className={getFieldControlClass(Boolean(errors.fullName))}
             value={form.fullName}
@@ -460,7 +460,7 @@ export function RsvpForm({
         </label>
 
         <label className="space-y-1">
-          <span className="block text-sm font-medium">{t.attendance}</span>
+          <span className="block text-base font-medium">{t.attendance}</span>
           <select
             className={getFieldControlClass(Boolean(errors.attendance))}
             value={form.attendance}
@@ -493,7 +493,7 @@ export function RsvpForm({
         </label>
 
         <label className="space-y-1">
-          <span className="block text-sm font-medium">{t.partySize}</span>
+          <span className="block text-base font-medium">{t.partySize}</span>
           <select
             className={getFieldControlClass(Boolean(errors.guestCount))}
             value={form.guestCount}
@@ -512,11 +512,11 @@ export function RsvpForm({
 
         {additionalGuestsCount > 0 ? (
           <div className="space-y-2 sm:col-span-2">
-            <span className="block text-sm font-medium">{t.additionalGuestNames}</span>
+            <span className="block text-base font-medium">{t.additionalGuestNames}</span>
             <div className="grid gap-3">
               {form.additionalGuestNames.map((value, index) => (
                 <label className="space-y-1" key={`additional-guest-${index}`}>
-                  <span className="block text-xs font-medium uppercase tracking-[0.12em]">
+                  <span className="block text-base font-medium">
                     {t.additionalGuestLabel} {index + 1} *
                   </span>
                   <input
@@ -542,7 +542,7 @@ export function RsvpForm({
         ) : null}
 
         <label className="space-y-1 sm:col-span-2">
-          <span className="block text-sm font-medium">{t.dietary}</span>
+          <span className="block text-base font-medium">{t.dietary}</span>
           <textarea
             className={getFieldControlClass(Boolean(errors.dietaryNotes))}
             rows={3}
