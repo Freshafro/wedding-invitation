@@ -195,7 +195,7 @@ export default function Home() {
                 <p className="text-[15px] leading-7">{t.ceremonyVenue}</p>
                 <p className="text-[15px] leading-7 text-[#5c5358]">1847 Boul. Gouin E, Montreal, QC H2C 1C8</p>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montreal%2C+QC+H2C+1C8"
+                  href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montr%C3%A9al%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
