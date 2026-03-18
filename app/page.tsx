@@ -164,7 +164,7 @@ export default function Home() {
                       src={src}
                       alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
                       fill
-                      className={`no-image-save object-cover  ${src === "/4R4A4249.jpg" ? "object-[center_10%] sm:object-[center_12%] scale-[1.12]" : ""}`}
+                      className={`no-image-save object-cover  ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
                       unoptimized
                       draggable={false}
