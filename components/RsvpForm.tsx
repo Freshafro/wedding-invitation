@@ -409,7 +409,7 @@ export function RsvpForm({
       aria-busy={isSubmitting}
     >
       <div className="space-y-2">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
+        <p className="text-sm font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
         <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.title}</h2>
         {maxPeoplePerInvitationMessage ? (
           <p className="font-display w-full text-justify text-sm leading-none sm:text-left sm:text-base">{maxPeoplePerInvitationMessage}</p>
