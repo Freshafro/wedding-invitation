@@ -52,7 +52,7 @@ export default function Home() {
             <strong>July 1, 2026</strong>.
           </>
         ),
-        maxPeoplePerInvitation: "Please note that there is a maximum number of people per invitation code and that children under the age of 16 are unfortunately not allowed to attend the reception.",
+        maxPeoplePerInvitation: "Please note that there is a maximum number of people per invitation code and that children under the age of 16 are not allowed to attend the reception.",
       },
       fr: {
         coupleNames: "Georges & Christella",
@@ -81,7 +81,7 @@ export default function Home() {
           "Moment spontané de Georges et Christella",
         ],
         closingMessage: <>Nous serions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
-        maxPeoplePerInvitation: "Prenez note qu'il y a un nombre maximum de personnes par code d'invitation et que les enfants de moins de 16 ans ne sont malheureusement pas autorisés à participer à la réception.",
+        maxPeoplePerInvitation: "Prenez note qu'il y a un nombre maximum de personnes par code d'invitation et que les enfants de moins de 16 ans ne sont pas autorisés à participer à la réception.",
       },
     }),
     []
