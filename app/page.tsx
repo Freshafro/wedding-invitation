@@ -138,27 +138,6 @@ export default function Home() {
           <p className="my-10 font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">{t.announcement}</p>
 
           <div className="mt-10 space-y-4">
-            {/* Mobile-specific horizontal snap gallery is temporarily disabled for testing. */}
-            {/* <div className="sm:hidden">
-              <div className="-mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {photoImagePaths.slice(0, 3).map((src, index) => (
-                  <figure
-                    key={`mobile-${index}`}
-                    className="relative aspect-[4/5] w-[82%] shrink-0 snap-center overflow-hidden rounded-2xl bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)]"
-                  >
-                    <Image
-                      src={src}
-                      alt={t.heroPhotoAlts[index] ?? `Couple photo ${index + 1}`}
-                      fill
-                      className={`object-cover ${index === 1 ? "scale-[1.03] saturate-110" : ""}`}
-                      sizes="82vw"
-                      priority={index === 1}
-                    />
-                  </figure>
-                ))}
-              </div>
-            </div> */}
-
             <div className="w-full space-y-3">
               <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
                 <Image
@@ -185,7 +164,7 @@ export default function Home() {
                       src={src}
                       alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
                       fill
-                      className={`no-image-save object-cover  ${src === "/4R4A4249.jpg" ? "object-[center_12%] scale-[1.12]" : ""}`}
+                      className={`no-image-save object-cover  ${src === "/4R4A4249.jpg" ? "object-[center_11%] sm:object-[center_12%] scale-[1.12]" : ""}`}
                       sizes="(min-width: 1024px) 400px, 50vw"
                       unoptimized
                       draggable={false}

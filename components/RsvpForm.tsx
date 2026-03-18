@@ -565,7 +565,7 @@ export function RsvpForm({
 
       <button
         type="submit"
-        className="w-full cursor-pointer rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-3 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full cursor-pointer rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-3 text-base font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
         disabled={isSubmitting}
         aria-disabled={isSubmitting}
       >
