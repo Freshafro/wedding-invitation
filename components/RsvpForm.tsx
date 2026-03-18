@@ -64,18 +64,18 @@ export function RsvpForm({
         thankYouTitle: "Thank you!",
         thankYouMessage:
           "Your response has been received successfully. We are so excited to celebrate with you.",
-        inviteCode: "Invitation code *",
+        inviteCode: "Invitation code",
         inviteCodeHint: "Use the code included in your invitation email or link. ",
         checkingCode: "Checking code...",
         inviteFoundPrefix: "Invitation found for",
         inviteLimitPrefix: "This invitation allows for up to",
         inviteLimitSuffix: "guest(s).",
         invalidCode: "Invitation code not found. Please check your email or code.",
-        fullName: "Full name *",
-        attendance: "Will you be able to attend? *",
+        fullName: "Full name",
+        attendance: "Will you be able to attend?",
         yesOption: "Yes, I will be able to attend",
         noOption: "No, I will not be able to attend",
-        partySize: "Number of people in your party *",
+        partySize: "Number of people in your party",
         additionalGuestNames: "Full names of additional guests",
         additionalGuestLabel: "Additional guest",
         dietary: "Dietary notes",
@@ -97,18 +97,18 @@ export function RsvpForm({
         thankYouTitle: "Merci!",
         thankYouMessage:
           "Votre réponse a bien été reçue.",
-        inviteCode: "Code d'invitation *",
+        inviteCode: "Code d'invitation",
         inviteCodeHint: "Utilisez le code reçu dans votre courriel d'invitation. ",
         checkingCode: "Vérification du code...",
         inviteFoundPrefix: "Invitation trouvée pour",
         inviteLimitPrefix: "Cette invitation permet jusqu'à",
         inviteLimitSuffix: "personne(s).",
         invalidCode: "Code d'invitation introuvable. Veuillez vérifier votre courriel ou votre code.",
-        fullName: "Nom complet *",
-        attendance: "Serez-vous présent(e) ? *",
+        fullName: "Nom complet",
+        attendance: "Serez-vous présent(e) ?",
         yesOption: "Oui, avec plaisir",
         noOption: "Non, je ne pourrai pas être présent(e)",
-        partySize: "Nombre de personnes *",
+        partySize: "Nombre de personnes",
         additionalGuestNames: "Noms complets des personnes qui vous accompagnent",
         additionalGuestLabel: "Accompagnateur(trice)",
         dietary: "Restrictions alimentaires",
@@ -517,7 +517,7 @@ export function RsvpForm({
               {form.additionalGuestNames.map((value, index) => (
                 <label className="space-y-1" key={`additional-guest-${index}`}>
                   <span className="block text-base font-medium">
-                    {t.additionalGuestLabel} {index + 1} *
+                    {t.additionalGuestLabel} {index + 1}
                   </span>
                   <input
                     className={getFieldControlClass(Boolean(errors.additionalGuestNames))}
