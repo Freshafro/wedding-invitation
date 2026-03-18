@@ -210,7 +210,7 @@ export default function Home() {
                 <p className="text-[15px] leading-7">{t.receptionVenue}</p>
                 <p className="text-[15px] leading-7 text-[#5c5358]">7550 Boulevard Henri-Bourassa E, QC H1J 2K9</p>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E"
+                  href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E%2C+Anjou%2C+QC+H1J+2K9"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
