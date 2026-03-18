@@ -48,7 +48,7 @@ export default function Home() {
         ],
         closingMessage: (
           <>
-            We would be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
+            We will be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
             <strong>July 1, 2026</strong>.
           </>
         ),
@@ -80,7 +80,7 @@ export default function Home() {
           "Portrait de Georges et Christella",
           "Moment spontané de Georges et Christella",
         ],
-        closingMessage: <>Nous serions ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
+        closingMessage: <>Nous serons ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le <strong>1er juillet 2026</strong>.</>,
         maxPeoplePerInvitation: "Prenez note qu'il y a un nombre maximum de personnes par code d'invitation et que les enfants de moins de 16 ans ne sont pas autorisés à participer à la réception.",
       },
     }),
