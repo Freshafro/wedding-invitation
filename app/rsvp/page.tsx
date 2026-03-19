@@ -23,7 +23,7 @@ export default async function RsvpPage({
             <LanguageToggle locale={locale} />
 
             <div className="mt-1 space-y-2">
-              <h1 className="font-display text-2xl leading-none sm:text-5xl">RSVP</h1>
+              <h1 className="font-display text-2xl leading-none sm:text-4xl">RSVP</h1>
             </div>
 
             <figure className="relative mt-5 mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">

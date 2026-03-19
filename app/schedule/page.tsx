@@ -3,6 +3,8 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
+
+const bottomImagePaths = ["/4R4A4328.jpg", "/4R4A4319.jpg"];
 export default async function SchedulePage({
   searchParams,
 }: {
@@ -25,18 +27,18 @@ export default async function SchedulePage({
             </div>
 
 
-            {/* <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-5 aspect-[6/5] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
                 fill
-                className="no-image-save object-cover object-[center_30%] sm:object-[center_22%]"
+                className="no-image-save object-cover object-[center_26%] sm:object-[center_22%]"
                 sizes="(min-width: 1024px) 832px, 100vw"
                 unoptimized
                 draggable={false}
                 priority
               />
-            </figure> */}
+            </figure>
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
@@ -77,31 +79,24 @@ export default async function SchedulePage({
             </div>
           </section>
 
-          {/* <figure className="relative mt-5 mx-auto w-[62%] aspect-[3/2] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:w-[84%] sm:aspect-[4/3] lg:w-[62%]">
-            <Image
-              src="/4R4A4328.jpg"
-              alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
-              fill
-              className="no-image-save object-cover object-[center_9%] sm:object-[center_10%]"
-              sizes="(min-width: 1024px) 832px, 100vw"
-              unoptimized
-              draggable={false}
-              priority
-            />
-          </figure> */}
-
-          <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
-            <Image
-              src="/4R4A4298.jpg"
-              alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
-              fill
-              className="no-image-save object-cover object-[center_30%] sm:object-[center_22%]"
-              sizes="(min-width: 1024px) 832px, 100vw"
-              unoptimized
-              draggable={false}
-              priority
-            />
-          </figure>
+          {/* <div className="mt-5 grid w-full grid-cols-2 gap-3">
+            {bottomImagePaths.map((src, index) => (
+              <figure
+                key={`${src}-${index}`}
+                className="relative aspect-[9/10] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/4]"
+              >
+                <Image
+                  src={src}
+                  alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
+                  fill
+                  className={`no-image-save object-cover ${src === "/4R4A4328.jpg" ? "object-[center_3%] sm:object-[center_12%] scale-[1.12]" : ""}`}
+                  sizes="(min-width: 1024px) 400px, 50vw"
+                  unoptimized
+                  draggable={false}
+                />
+              </figure>
+            ))}
+          </div> */}
 
           <div className="mt-12 sm:mt-0">
             <PageFlowNav
