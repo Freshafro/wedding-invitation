@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
-import { SectionDivider } from "@/components/SectionDivider";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
 
@@ -93,14 +92,15 @@ export default function Home() {
             </div>
           </section>
 
-          <SectionDivider />
-          <PageFlowNav
-            locale={locale}
-            next={{
-              href: "/schedule",
-              label: t.nextToSchedule,
-            }}
-          />
+          <div className="mt-6 sm:mt-0">
+            <PageFlowNav
+              locale={locale}
+              next={{
+                href: "/schedule",
+                label: t.nextToSchedule,
+              }}
+            />
+          </div>
         </div>
       </main>
     </SiteShell>

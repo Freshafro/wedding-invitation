@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
-import { SectionDivider } from "@/components/SectionDivider";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
 export default function SchedulePage() {
@@ -84,18 +83,19 @@ export default function SchedulePage() {
             </div>
           </section>
 
-          <SectionDivider />
-          <PageFlowNav
-            locale={locale}
-            previous={{
-              href: "/",
-              label: t.backToWelcome,
-            }}
-            next={{
-              href: "/rsvp",
-              label: t.nextToRsvp,
-            }}
-          />
+          <div className="mt-6 sm:mt-0">
+            <PageFlowNav
+              locale={locale}
+              previous={{
+                href: "/",
+                label: t.backToWelcome,
+              }}
+              next={{
+                href: "/rsvp",
+                label: t.nextToRsvp,
+              }}
+            />
+          </div>
         </div>
       </main>
     </SiteShell>

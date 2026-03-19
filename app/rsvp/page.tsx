@@ -20,7 +20,7 @@ export default function RsvpPage() {
 
   return (
     <SiteShell locale={locale}>
-      <main className="relative min-h-screen bg-white px-5 py-5 pb-[calc(env(safe-area-inset-bottom)+4rem)] sm:px-8 sm:pb-5">
+      <main className="relative min-h-screen bg-white px-5 py-5 pb-[calc(env(safe-area-inset-bottom)+3rem)] sm:px-8 sm:pb-5">
         <div className="relative mx-auto w-full max-w-3xl">
           <section className="space-y-10">
             <LanguageToggle locale={locale} />
