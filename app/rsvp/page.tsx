@@ -20,7 +20,7 @@ export default function RsvpPage() {
 
   return (
     <SiteShell locale={locale}>
-      <main className="relative min-h-screen bg-white px-5 py-5 pb-[calc(env(safe-area-inset-bottom)+3rem)] sm:px-8 sm:pb-5">
+      <main className="relative min-h-screen bg-white px-5 py-5 sm:px-8 sm:pb-5">
         <div className="relative mx-auto w-full max-w-3xl">
           <section className="space-y-10">
             <LanguageToggle locale={locale} />
@@ -54,13 +54,15 @@ export default function RsvpPage() {
             </Suspense>
           </section>
 
-          <PageFlowNav
-            locale={locale}
-            previous={{
-              href: "/schedule",
-              label: t.backToSchedule,
-            }}
-          />
+          <div className="mt-12 sm:mt-0">
+            <PageFlowNav
+              locale={locale}
+              previous={{
+                href: "/schedule",
+                label: t.backToSchedule,
+              }}
+            />
+          </div>
         </div>
       </main>
     </SiteShell>

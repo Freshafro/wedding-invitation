@@ -50,8 +50,8 @@ export function FloatingPageNav({ locale }: FloatingPageNavProps) {
               aria-current={item.active ? "page" : undefined}
               className={`rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
                 item.active
-                  ? "bg-[var(--surface-soft)] text-[#332c30]"
-                  : "text-[#332c30] hover:bg-[var(--surface-soft)]"
+                  ? "border-1 border-[#6f635b] bg-[var(--surface-soft)] text-[#332c30]"
+                  : "border border-transparent text-[#332c30] hover:border-[var(--border-muted)] hover:bg-[var(--surface-soft)]"
               }`}
             >
               {item.label}
@@ -69,8 +69,8 @@ export function FloatingPageNav({ locale }: FloatingPageNavProps) {
               aria-current={item.active ? "page" : undefined}
               className={`inline-flex min-h-11 items-center justify-center rounded-xl px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
                 item.active
-                  ? "bg-[var(--surface-soft)] text-[#332c30]"
-                  : "text-[#332c30] hover:bg-[var(--surface-soft)]"
+                  ? "border-1 border-[#6f635b] bg-[var(--surface-soft)] text-[#332c30]"
+                  : "border border-transparent text-[#332c30] hover:border-[var(--border-muted)] hover:bg-[var(--surface-soft)]"
               }`}
             >
               {item.label}

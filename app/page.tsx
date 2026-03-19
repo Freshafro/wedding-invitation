@@ -92,7 +92,7 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="mt-6 sm:mt-0">
+          <div className="mt-12 sm:mt-0">
             <PageFlowNav
               locale={locale}
               next={{
