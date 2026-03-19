@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import { RsvpForm } from "@/components/RsvpForm";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
@@ -10,8 +9,13 @@ import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
 
 export default function RsvpPage() {
-  const searchParams = useSearchParams();
-  const locale = getLocale(searchParams.get("lang"));
+  const [locale, setLocale] = useState(() => getLocale(null));
+
+  useEffect(() => {
+    const nextLocale = getLocale(new URLSearchParams(window.location.search).get("lang"));
+    setLocale(nextLocale);
+  }, []);
+
   const t = getWeddingCopy(locale);
 
   return (

@@ -1,15 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
 import { SectionDivider } from "@/components/SectionDivider";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
 export default function SchedulePage() {
-  const searchParams = useSearchParams();
-  const locale = getLocale(searchParams.get("lang"));
+  const [locale, setLocale] = useState(() => getLocale(null));
+
+  useEffect(() => {
+    const nextLocale = getLocale(new URLSearchParams(window.location.search).get("lang"));
+    setLocale(nextLocale);
+  }, []);
+
   const t = getWeddingCopy(locale);
 
   return (

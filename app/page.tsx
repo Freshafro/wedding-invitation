@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
@@ -17,8 +17,13 @@ const greatVibes = Great_Vibes({
 const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4319.jpg"];
 
 export default function Home() {
-  const searchParams = useSearchParams();
-  const locale = getLocale(searchParams.get("lang"));
+  const [locale, setLocale] = useState(() => getLocale(null));
+
+  useEffect(() => {
+    const nextLocale = getLocale(new URLSearchParams(window.location.search).get("lang"));
+    setLocale(nextLocale);
+  }, []);
+
   const t = getWeddingCopy(locale);
 
   return (

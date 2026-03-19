@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { rsvpSchema } from "@/lib/validation";
 
 type FieldErrorCode =
@@ -52,7 +51,6 @@ export function RsvpForm({
   const [statusCode, setStatusCode] = useState<StatusCode | "">("");
   const [inviteLookup, setInviteLookup] = useState<InviteLookup | null>(null);
   const [isCheckingInvite, setIsCheckingInvite] = useState(false);
-  const searchParams = useSearchParams();
 
   const maxGuestOptions = useMemo(() => inviteLookup?.maxGuestsAllowed ?? 10, [inviteLookup]);
 
@@ -261,14 +259,14 @@ export function RsvpForm({
   }, [additionalGuestsCount]);
 
   useEffect(() => {
-    const code = searchParams.get("code") ?? "";
+    const code = new URLSearchParams(window.location.search).get("code") ?? "";
     if (!code) {
       return;
     }
 
     const normalized = code.trim().toUpperCase();
     setForm((prev) => (prev.inviteCode === normalized ? prev : { ...prev, inviteCode: normalized }));
-  }, [searchParams]);
+  }, []);
 
   useEffect(() => {
     const code = form.inviteCode.trim().toUpperCase();
