@@ -22,7 +22,7 @@ export default async function RsvpPage({
           <section>
             <LanguageToggle locale={locale} />
 
-            <div className="mt-1 space-y-2">
+            <div className="mt-5 space-y-2">
               <h1 className="font-display text-2xl leading-none sm:text-4xl">RSVP</h1>
             </div>
 
