@@ -25,12 +25,12 @@ export default async function SchedulePage({
               </div>
             </div>
 
-            <figure className="relative mt-5 aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
                 fill
-                className="no-image-save object-cover object-[center_22%]"
+                className="no-image-save object-cover object-[center_30%] sm:object-[center_22%]"
                 sizes="(min-width: 1024px) 832px, 100vw"
                 unoptimized
                 draggable={false}
@@ -76,6 +76,19 @@ export default async function SchedulePage({
               </article>
             </div>
           </section>
+
+          <figure className="relative mt-5 mx-auto w-[70%] aspect-[3/2] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:w-full sm:aspect-[4/3]">
+            <Image
+              src="/4R4A4328.jpg"
+              alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
+              fill
+              className="no-image-save object-cover object-[center_9%] sm:object-[center_22%]"
+              sizes="(min-width: 1024px) 832px, 100vw"
+              unoptimized
+              draggable={false}
+              priority
+            />
+          </figure>
 
           <div className="mt-12 sm:mt-0">
             <PageFlowNav
