@@ -1,17 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/lib/weddingCopy";
 
-export function LanguageToggle(_: { locale: Locale }) {
+export function LanguageToggle({ locale }: { locale: Locale }) {
   const pathname = usePathname();
-  const [activeLocale, setActiveLocale] = useState<Locale | null>(null);
-
-  useEffect(() => {
-    const lang = new URLSearchParams(window.location.search).get("lang");
-    setActiveLocale(lang === "en" ? "en" : "fr");
-  }, [pathname]);
 
   return (
     <div className="flex justify-end">
@@ -19,7 +12,7 @@ export function LanguageToggle(_: { locale: Locale }) {
         <a
           href={`${pathname}?lang=en`}
           className={`rounded-full px-4 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
-            activeLocale === "en"
+            locale === "en"
               ? "bg-[#332c30] text-white"
               : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
           }`}
@@ -29,7 +22,7 @@ export function LanguageToggle(_: { locale: Locale }) {
         <a
           href={`${pathname}?lang=fr`}
           className={`rounded-full px-4 py-2 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2 ${
-            activeLocale === "fr"
+            locale === "fr"
               ? "bg-[#332c30] text-white"
               : "text-[#332c30] hover:bg-[var(--surface-warm)]/70"
           }`}

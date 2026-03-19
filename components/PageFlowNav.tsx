@@ -33,7 +33,7 @@ export function PageFlowNav({
         {next ? (
           <Link
             href={withLang(next.href)}
-            className="inline-flex items-center justify-center rounded-xl border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-2 text-sm font-semibold text-[#332c30] transition hover:bg-[var(--surface-warm)]/50"
+            className="inline-flex items-center justify-center rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90"
           >
             {next.label}
           </Link>

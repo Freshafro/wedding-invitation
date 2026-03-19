@@ -1,19 +1,15 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
-export default function SchedulePage() {
-  const [locale, setLocale] = useState(() => getLocale(null));
-
-  useEffect(() => {
-    const nextLocale = getLocale(new URLSearchParams(window.location.search).get("lang"));
-    setLocale(nextLocale);
-  }, []);
-
+export default async function SchedulePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string }>;
+}) {
+  const params = await searchParams;
+  const locale = getLocale(params.lang ?? null);
   const t = getWeddingCopy(locale);
 
   return (
@@ -38,8 +34,6 @@ export default function SchedulePage() {
                 sizes="(min-width: 1024px) 832px, 100vw"
                 unoptimized
                 draggable={false}
-                onContextMenu={(event) => event.preventDefault()}
-                onDragStart={(event) => event.preventDefault()}
                 priority
               />
             </figure>

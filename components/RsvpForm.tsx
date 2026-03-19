@@ -73,7 +73,7 @@ export function RsvpForm({
         attendance: "Will you be able to attend?",
         yesOption: "Yes, I will be able to attend",
         noOption: "No, I will not be able to attend",
-        partySize: "Number of people in your party",
+        partySize: "Number of people",
         additionalGuestNames: "Full names of additional guests",
         additionalGuestLabel: "Additional guest",
         dietary: "Dietary notes",

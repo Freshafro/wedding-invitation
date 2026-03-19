@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import { Great_Vibes } from "next/font/google";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
@@ -15,14 +12,13 @@ const greatVibes = Great_Vibes({
 
 const photoImagePaths = ["/4R4A4423.jpg", "/4R4A4249.jpg", "/4R4A4319.jpg"];
 
-export default function Home() {
-  const [locale, setLocale] = useState(() => getLocale(null));
-
-  useEffect(() => {
-    const nextLocale = getLocale(new URLSearchParams(window.location.search).get("lang"));
-    setLocale(nextLocale);
-  }, []);
-
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ lang?: string }>;
+}) {
+  const params = await searchParams;
+  const locale = getLocale(params.lang ?? null);
   const t = getWeddingCopy(locale);
 
   return (
@@ -62,8 +58,6 @@ export default function Home() {
                     sizes="(min-width: 1024px) 832px, 100vw"
                     unoptimized
                     draggable={false}
-                    onContextMenu={(event) => event.preventDefault()}
-                    onDragStart={(event) => event.preventDefault()}
                     priority
                   />
                 </figure>
@@ -82,8 +76,6 @@ export default function Home() {
                         sizes="(min-width: 1024px) 400px, 50vw"
                         unoptimized
                         draggable={false}
-                        onContextMenu={(event) => event.preventDefault()}
-                        onDragStart={(event) => event.preventDefault()}
                       />
                     </figure>
                   ))}
