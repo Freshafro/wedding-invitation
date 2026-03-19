@@ -17,15 +17,15 @@ export default async function SchedulePage({
       <main className="relative min-h-screen overflow-hidden bg-white px-5 py-5 sm:px-8">
         <div className="relative mx-auto w-full max-w-3xl">
           <section className="rounded-3xl">
-            <div className="space-y-1">
-              <LanguageToggle locale={locale} />
-              <div className="space-y-2">
-                <h1 className="font-display text-3xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
-                <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
-              </div>
+            <LanguageToggle locale={locale} />
+
+            <div className="mt-5 space-y-2">
+              <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
+              <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
             </div>
 
-            <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+
+            {/* <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
@@ -36,7 +36,7 @@ export default async function SchedulePage({
                 draggable={false}
                 priority
               />
-            </figure>
+            </figure> */}
 
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
@@ -77,12 +77,25 @@ export default async function SchedulePage({
             </div>
           </section>
 
-          <figure className="relative mt-5 mx-auto w-[70%] aspect-[3/2] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:w-full sm:aspect-[4/3]">
+          {/* <figure className="relative mt-5 mx-auto w-[62%] aspect-[3/2] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:w-[84%] sm:aspect-[4/3] lg:w-[62%]">
             <Image
               src="/4R4A4328.jpg"
               alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
               fill
-              className="no-image-save object-cover object-[center_9%] sm:object-[center_22%]"
+              className="no-image-save object-cover object-[center_9%] sm:object-[center_10%]"
+              sizes="(min-width: 1024px) 832px, 100vw"
+              unoptimized
+              draggable={false}
+              priority
+            />
+          </figure> */}
+
+          <figure className="relative mt-5 aspect-[15/14] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <Image
+              src="/4R4A4298.jpg"
+              alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
+              fill
+              className="no-image-save object-cover object-[center_30%] sm:object-[center_22%]"
               sizes="(min-width: 1024px) 832px, 100vw"
               unoptimized
               draggable={false}

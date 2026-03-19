@@ -41,9 +41,11 @@ const initialForm = {
 export function RsvpForm({
   locale = "en",
   maxPeoplePerInvitationMessage,
+  showHeader = true,
 }: {
   locale?: Locale;
   maxPeoplePerInvitationMessage?: React.ReactNode;
+  showHeader?: boolean;
 }) {
   const [form, setForm] = useState(initialForm);
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -407,13 +409,27 @@ export function RsvpForm({
       onSubmit={handleSubmit}
       aria-busy={isSubmitting}
     >
-      <div className="space-y-2">
+      {showHeader ? (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
+          <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.title}</h2>
+        </div>
+      ) : maxPeoplePerInvitationMessage ? (
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
+          <p className="font-display w-full text-justify text-sm leading-none sm:text-left sm:text-base">
+            {maxPeoplePerInvitationMessage}
+          </p>
+        </div>
+      ) : (
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#5c5358]">{t.kicker}</p>
-        <h2 className="font-display text-4xl leading-none sm:text-5xl">{t.title}</h2>
-        {maxPeoplePerInvitationMessage ? (
-          <p className="font-display w-full text-justify text-sm leading-none sm:text-left sm:text-base">{maxPeoplePerInvitationMessage}</p>
-        ) : null}
-      </div>
+      )}
+
+      {showHeader && maxPeoplePerInvitationMessage ? (
+        <p className="font-display w-full text-justify text-sm leading-none sm:text-left sm:text-base">
+          {maxPeoplePerInvitationMessage}
+        </p>
+      ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="space-y-1 sm:col-span-2">

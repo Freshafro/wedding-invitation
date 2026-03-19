@@ -40,7 +40,7 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
         <strong>15th of August, 2026</strong>.
       </>
     ),
-    scheduleTitle: "Wedding Day Schedule",
+    scheduleTitle: "WEDDING DAY SCHEDULE",
     dateLabel: "Saturday, August 15, 2026",
     ceremonyTitle: "Wedding Ceremony",
     ceremonyTime: "1:00 PM - 2:30 PM",
@@ -80,7 +80,7 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
         <strong>15 août 2026</strong>.
       </>
     ),
-    scheduleTitle: "Programme de la journée",
+    scheduleTitle: "PROGRAMME DE LA JOURNÉE",
     dateLabel: "Samedi 15 août 2026",
     ceremonyTitle: "Cérémonie de mariage",
     ceremonyTime: "13 h 00 - 14 h 30",
