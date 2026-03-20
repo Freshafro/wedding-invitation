@@ -3,6 +3,7 @@ import { Great_Vibes } from "next/font/google";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
 import { SiteShell } from "@/components/SiteShell";
+import { SectionDivider } from "@/components/SectionDivider";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
 
 const greatVibes = Great_Vibes({
@@ -83,6 +84,8 @@ export default async function Home({
               </div>
             </div>
           </section>
+
+          <SectionDivider textClassName={greatVibes.className} />
 
           <div className="mt-12 sm:mt-0">
             <PageFlowNav

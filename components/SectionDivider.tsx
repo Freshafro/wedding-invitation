@@ -1,9 +1,11 @@
-export function SectionDivider() {
+export function SectionDivider({ textClassName = "" }: { textClassName?: string }) {
   return (
     <div className="my-10 flex items-center justify-center gap-3 py-0.5" aria-hidden>
-      <span className="h-px w-16 bg-[var(--border-muted)]/70" />
-      <span className="h-1.5 w-1.5 rounded-full bg-[var(--border-muted)]" />
-      <span className="h-px w-16 bg-[var(--border-muted)]/70" />
+      <span className="h-[1.5px] w-24 bg-[var(--border-muted)]/70" />
+      <span className={`${textClassName} px-2 text-3xl leading-none tracking-[0.08em] text-[var(--border-muted)]/90`}>
+        G<span className="text-[0.8em]">&amp;</span>C
+      </span>
+      <span className="h-[1.5px] w-24 bg-[var(--border-muted)]/70" />
     </div>
   );
 }

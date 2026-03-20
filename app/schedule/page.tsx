@@ -27,7 +27,7 @@ export default async function SchedulePage({
             </div>
 
 
-            <figure className="relative mt-5 aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-5 aspect-[25/24] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
