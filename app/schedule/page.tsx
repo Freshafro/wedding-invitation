@@ -21,13 +21,13 @@ export default async function SchedulePage({
           <section className="rounded-3xl">
             <LanguageToggle locale={locale} />
 
-            <div className="mt-5 space-y-2">
+            <div className="mt-6 space-y-2">
               <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
-              <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
+              <p className="text-sm font-semibold tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
             </div>
 
 
-            <figure className="relative mt-5 aspect-[6/5] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-5 aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
@@ -52,7 +52,7 @@ export default async function SchedulePage({
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montr%C3%A9al%2C+QC+H2C+1C8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
+                  className="mt-2 sm:mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
                 >
                   {t.openMap}
                 </a>
@@ -71,7 +71,7 @@ export default async function SchedulePage({
                   href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E%2C+Anjou%2C+QC+H1J+2K9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
+                  className="mt-2 sm:mt-auto inline-flex items-center justify-center self-start rounded-xl border border-[#332c30] bg-[#332c30] px-4 py-1 text-sm font-semibold text-white transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/40 focus-visible:ring-offset-2"
                 >
                   {t.openMap}
                 </a>

@@ -28,14 +28,14 @@ export default async function Home({
           <section>
             <LanguageToggle locale={locale} />
 
-            <div className="mt-1 space-y-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
+            <div className="mt-6 space-y-5">
+              <p className="mb-6 text-base font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
               <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
                 {t.coupleNames}
               </h1>
             </div>
 
-            <div className="mt-5 mb-10 flex items-center gap-4" aria-hidden>
+            <div className="mt-6 mb-10 flex items-center gap-4" aria-hidden>
               <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
               <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em]">
                 {t.heroDate}
