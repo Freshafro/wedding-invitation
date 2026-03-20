@@ -30,7 +30,7 @@ export default async function Home({
             <LanguageToggle locale={locale} />
 
             <div className="mt-6 space-y-5">
-              <p className="mb-6 text-base font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
+              <p className="mb-6 text-sm font-semibold uppercase tracking-[0.12em]">{t.heroKicker}</p>
               <h1 className={`${greatVibes.className} text-center text-5xl leading-tight font-normal sm:text-6xl`}>
                 {t.coupleNames}
               </h1>

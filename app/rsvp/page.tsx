@@ -1,10 +1,17 @@
 import Image from "next/image";
+import { Great_Vibes } from "next/font/google";
 import { Suspense } from "react";
 import { RsvpForm } from "@/components/RsvpForm";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
+import { SectionDivider } from "@/components/SectionDivider";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default async function RsvpPage({
   searchParams,
@@ -54,6 +61,8 @@ export default async function RsvpPage({
               </Suspense>
             </div>
           </section>
+
+          <SectionDivider textClassName={greatVibes.className} />
 
           <div className="mt-12 sm:mt-0">
             <PageFlowNav

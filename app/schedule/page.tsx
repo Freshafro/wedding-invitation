@@ -1,8 +1,15 @@
 import Image from "next/image";
+import { Great_Vibes } from "next/font/google";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { PageFlowNav } from "@/components/PageFlowNav";
+import { SectionDivider } from "@/components/SectionDivider";
 import { SiteShell } from "@/components/SiteShell";
 import { getLocale, getWeddingCopy } from "@/lib/weddingCopy";
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 const bottomImagePaths = ["/4R4A4328.jpg", "/4R4A4319.jpg"];
 export default async function SchedulePage({
@@ -79,24 +86,7 @@ export default async function SchedulePage({
             </div>
           </section>
 
-          {/* <div className="mt-5 grid w-full grid-cols-2 gap-3">
-            {bottomImagePaths.map((src, index) => (
-              <figure
-                key={`${src}-${index}`}
-                className="relative aspect-[9/10] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/4]"
-              >
-                <Image
-                  src={src}
-                  alt={t.heroPhotoAlts[index + 1] ?? `Couple photo ${index + 2}`}
-                  fill
-                  className={`no-image-save object-cover ${src === "/4R4A4328.jpg" ? "object-[center_3%] sm:object-[center_12%] scale-[1.12]" : ""}`}
-                  sizes="(min-width: 1024px) 400px, 50vw"
-                  unoptimized
-                  draggable={false}
-                />
-              </figure>
-            ))}
-          </div> */}
+          <SectionDivider textClassName={greatVibes.className} />
 
           <div className="mt-12 sm:mt-0">
             <PageFlowNav
