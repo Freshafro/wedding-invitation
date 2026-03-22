@@ -30,7 +30,7 @@ export default async function SchedulePage({
 
             <div className="mt-6 space-y-2">
               <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
-              <p className="text-base font-semibold tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
+              <p className="text-base font-semibold tracking-[0.08em]">{t.dateLabel}</p>
             </div>
 
 
@@ -50,11 +50,11 @@ export default async function SchedulePage({
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.ceremonyTitle}</h2>
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#5c5358] sm:text-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] sm:text-sm">
                   {t.ceremonyTime}
                 </p>
                 <p className="text-[15px] leading-7">{t.ceremonyVenue}</p>
-                <p className="text-[15px] leading-7 text-[#5c5358]">1847 Boul. Gouin E, Montréal, QC H2C 1C8</p>
+                <p className="text-[15px] leading-7">1847 Boul. Gouin E, Montréal, QC H2C 1C8</p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=1847+Boul.+Gouin+E%2C+Montr%C3%A9al%2C+QC+H2C+1C8"
                   target="_blank"
@@ -67,12 +67,12 @@ export default async function SchedulePage({
 
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.receptionTitle}</h2>
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#5c5358] sm:text-sm">
+                <p className="text-[15px] font-semibold uppercase tracking-[0.1em] sm:text-sm">
                   {t.receptionTime}
                 </p>
                 <p className="text-[15px] leading-7">{t.receptionVenue}</p>
-                <p className="text-[15px] leading-7 text-[#5c5358]">
-                  7550 Boulevard Henri-Bourassa E, Anjou, QC H1J 2K9
+                <p className="text-[15px] leading-7">
+                  7550 Boul. Henri-Bourassa E, Anjou, QC H1J 2K9
                 </p>
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=7550+Boulevard+Henri-Bourassa+E%2C+Anjou%2C+QC+H1J+2K9"
@@ -86,10 +86,10 @@ export default async function SchedulePage({
             </div>
 
             <div className="mt-8 mx-auto w-full max-w-prose text-center">
-              <h2 className="font-display font-semibold text-2xl leading-tight text-[#332c30] sm:text-center">
+              <h2 className="font-display font-semibold text-2xl leading-tight sm:text-center">
                 {t.scheduleThemeTitle}
               </h2>
-              <p className="mt-3 text-lg leading-7 text-[#5c5358]">{t.scheduleThemeBody}</p>
+              <p className="mt-3 text-lg leading-7">{t.scheduleThemeBody}</p>
             </div>
           </section>
 
