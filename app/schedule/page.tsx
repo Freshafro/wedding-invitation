@@ -30,7 +30,7 @@ export default async function SchedulePage({
 
             <div className="mt-6 space-y-2">
               <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
-              <p className="text-sm font-semibold tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
+              <p className="text-base font-semibold tracking-[0.08em] text-[#5c5358]">{t.dateLabel}</p>
             </div>
 
 
