@@ -33,7 +33,7 @@ export default async function RsvpPage({
               <h1 className="font-display text-2xl leading-none sm:text-4xl">RSVP</h1>
             </div>
 
-            <figure className="relative mt-5 mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
+            <figure className="relative mt-6 mx-auto w-full max-w-2xl overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] aspect-[16/10] sm:aspect-[16/9]">
               <Image
                 src="/4R4A4353.jpg"
                 alt="Georges and Christella laughing together"
@@ -45,7 +45,7 @@ export default async function RsvpPage({
               />
             </figure>
 
-            <p className="font-display mx-auto mb-5 mt-10 w-full max-w-prose text-center text-lg leading-8 sm:text-xl">
+            <p className="font-display mx-auto mb-5 mt-8 w-full max-w-prose text-center text-lg leading-8 sm:text-xl">
               {t.closingMessage}
             </p>
 
