@@ -44,11 +44,11 @@ export default async function Home({
               <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
             </div>
 
-            <p className="my-10 font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">
+            <p className="my-5 font-display mx-auto w-full max-w-prose text-lg leading-8 sm:text-xl text-center">
               {t.announcement}
             </p>
 
-            <div className="mt-10 space-y-4">
+            <div className="mt-5 space-y-4">
               <div className="w-full space-y-3">
                 <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
                   <Image

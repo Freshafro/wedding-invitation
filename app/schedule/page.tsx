@@ -28,13 +28,13 @@ export default async function SchedulePage({
           <section className="rounded-3xl">
             <LanguageToggle locale={locale} />
 
-            <div className="mt-6 space-y-2">
+            <div className="mt-6 space-y-1">
               <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
               <p className="text-base font-semibold tracking-[0.08em]">{t.dateLabel}</p>
             </div>
 
 
-            <figure className="relative mt-5 aspect-[25/24] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-8 aspect-[25/24] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
@@ -47,10 +47,10 @@ export default async function SchedulePage({
               />
             </figure>
 
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.ceremonyTitle}</h2>
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] sm:text-sm">
+                <p className="text-[15px] uppercase tracking-[0.1em] sm:text-sm">
                   {t.ceremonyTime}
                 </p>
                 <p className="text-[15px] leading-7">{t.ceremonyVenue}</p>
@@ -67,7 +67,7 @@ export default async function SchedulePage({
 
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.receptionTitle}</h2>
-                <p className="text-[15px] font-semibold uppercase tracking-[0.1em] sm:text-sm">
+                <p className="text-[15px] uppercase tracking-[0.1em] sm:text-sm">
                   {t.receptionTime}
                 </p>
                 <p className="text-[15px] leading-7">{t.receptionVenue}</p>
