@@ -95,7 +95,7 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
     receptionVenue: "Centre des congrès et banquets Renaissance",
     scheduleThemeTitle: "Thème",
     scheduleThemeBody:
-      "Aucun thème n'est imposé pour l'évènement. Nous avons hâte de vous voir tout en beauté.",
+      "Aucun thème n'est imposé pour l'événement. Nous avons hâte de vous voir en beauté.",
     openMap: "Ouvrir dans Google Maps",
     heroPhotoAlts: [
       "Georges et Christella souriants ensemble",
