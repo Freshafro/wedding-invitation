@@ -48,7 +48,7 @@ export default async function Home({
               {t.announcement}
             </p>
 
-            <div className="mt-5 space-y-4">
+            <div className="mt-8 space-y-4">
               <div className="w-full space-y-3">
                 <figure className="relative aspect-square overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
                   <Image

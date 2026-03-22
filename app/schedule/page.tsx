@@ -30,11 +30,11 @@ export default async function SchedulePage({
 
             <div className="mt-6 space-y-1">
               <h1 className="font-display text-xl leading-tight sm:text-4xl">{t.scheduleTitle}</h1>
-              <p className="text-base font-semibold tracking-[0.08em]">{t.dateLabel}</p>
+              <p className="text-base font-normal tracking-[0.08em]">{t.dateLabel}</p>
             </div>
 
 
-            <figure className="relative mt-8 aspect-[25/24] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
+            <figure className="relative mt-6 aspect-[25/24] overflow-hidden bg-[var(--surface-soft)] shadow-[0_10px_30px_rgba(51,44,48,0.08)] sm:aspect-[4/3]">
               <Image
                 src="/4R4A4298.jpg"
                 alt={t.heroPhotoAlts[0] ?? "Couple hero photo"}
