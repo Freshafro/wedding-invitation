@@ -36,7 +36,7 @@ export default async function Home({
               </h1>
             </div>
 
-            <div className="mt-6 mb-10 flex items-center gap-4" aria-hidden>
+            <div className="mt-4 mb-10 flex items-center gap-4" aria-hidden>
               <span className="h-px flex-1 border-t border-[var(--border-muted)]" />
               <span className="rounded-full border border-[var(--border-muted)] bg-[var(--surface-soft)] px-4 py-1 text-xs font-semibold uppercase tracking-[0.12em]">
                 {t.heroDate}

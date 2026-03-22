@@ -15,6 +15,8 @@ type WeddingCopy = {
   receptionTitle: string;
   receptionTime: string;
   receptionVenue: string;
+  scheduleThemeTitle: string;
+  scheduleThemeBody: string;
   openMap: string;
   heroPhotoAlts: string[];
   closingMessage: ReactNode;
@@ -48,6 +50,9 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
     receptionTitle: "Reception",
     receptionTime: "Starting 5:00 PM",
     receptionVenue: "Centre des congrès et banquets Renaissance",
+    scheduleThemeTitle: "Theme",
+    scheduleThemeBody:
+      "No theme is required for the celebration. We look forward to seeing you at your best.",
     openMap: "Open in Google Maps",
     heroPhotoAlts: [
       "Georges and Christella smiling together",
@@ -88,6 +93,9 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
     receptionTitle: "Réception",
     receptionTime: "À partir de 17 h 00",
     receptionVenue: "Centre des congrès et banquets Renaissance",
+    scheduleThemeTitle: "Thème",
+    scheduleThemeBody:
+      "Aucun thème n'est imposé pour l'évènement. Nous avons hâte de vous voir tout en beauté.",
     openMap: "Ouvrir dans Google Maps",
     heroPhotoAlts: [
       "Georges et Christella souriants ensemble",
@@ -101,7 +109,7 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
       </>
     ),
     maxPeoplePerInvitation:
-      "Prenez note qu'il y a un nombre maximum de personnes par code d'invitation et que les enfants de moins de 16 ans ne sont pas autorisés à participer à la réception.",
+      "Prenez note qu'un nombre maximum de personnes est prévu par code d'invitation et que les enfants de moins de 16 ans ne sont pas autorisés à participer à la réception.",
     nextToSchedule: "Voir le programme",
     nextToRsvp: "Continuer vers le RSVP",
     backToWelcome: "Retour à l'accueil",

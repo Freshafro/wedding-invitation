@@ -84,6 +84,13 @@ export default async function SchedulePage({
                 </a>
               </article>
             </div>
+
+            <div className="mt-8 mx-auto w-full max-w-prose text-center">
+              <h2 className="font-display font-semibold text-2xl leading-tight text-[#332c30]">
+                {t.scheduleThemeTitle}
+              </h2>
+              <p className="mt-3 text-lg leading-7 text-[#5c5358]">{t.scheduleThemeBody}</p>
+            </div>
           </section>
 
           <SectionDivider textClassName={greatVibes.className} />
