@@ -47,7 +47,7 @@ export default async function SchedulePage({
               />
             </figure>
 
-            <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <article className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--border-muted)] bg-white p-4 shadow-[0_8px_24px_rgba(51,44,48,0.06)] sm:p-5">
                 <h2 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{t.ceremonyTitle}</h2>
                 <p className="text-[15px] uppercase tracking-[0.1em] sm:text-sm">
