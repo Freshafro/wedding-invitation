@@ -38,6 +38,8 @@ const initialForm = {
   website: "",
 };
 
+const INVITE_CODE_SESSION_KEY = "inviteCode";
+
 export function RsvpForm({
   locale = "en",
   maxPeoplePerInvitationMessage,
@@ -261,13 +263,15 @@ export function RsvpForm({
   }, [additionalGuestsCount]);
 
   useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code") ?? "";
+    const urlCode = new URLSearchParams(window.location.search).get("code") ?? "";
+    const storedCode = window.sessionStorage.getItem(INVITE_CODE_SESSION_KEY) ?? "";
+    const code = (urlCode || storedCode).trim().toUpperCase();
     if (!code) {
       return;
     }
 
-    const normalized = code.trim().toUpperCase();
-    setForm((prev) => (prev.inviteCode === normalized ? prev : { ...prev, inviteCode: normalized }));
+    window.sessionStorage.setItem(INVITE_CODE_SESSION_KEY, code);
+    setForm((prev) => (prev.inviteCode === code ? prev : { ...prev, inviteCode: code }));
   }, []);
 
   useEffect(() => {
