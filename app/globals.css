@@ -26,6 +26,13 @@ body {
   font-family: var(--font-cormorant-garamond), Georgia, "Times New Roman", serif;
 }
 
+/* Native selects/options often ignore inherited body font; align with site typography where supported */
+select,
+select option,
+select optgroup {
+  font-family: var(--font-cormorant-garamond), Georgia, "Times New Roman", serif;
+}
+
 html {
   background: var(--background);
 }

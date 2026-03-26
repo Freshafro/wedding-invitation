@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { FormSelect, type FormSelectOption } from "@/components/FormSelect";
 import { rsvpSchema } from "@/lib/validation";
 
 type FieldErrorCode =
@@ -134,46 +135,38 @@ export function RsvpForm({
   const errorTextClass = "text-sm leading-5 text-red-600";
   const requiredMarkClass = "ml-0.5 relative -top-[2px] text-[0.72em] leading-none";
   const fieldControlClass =
-    "w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 text-base leading-6 transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/35 focus-visible:ring-offset-1 focus:border-[#332c30]/50";
+    "w-full rounded-xl border border-[var(--border-muted)] bg-white px-3 py-2.5 font-display text-base leading-6 lining-nums tabular-nums tracking-wide transition disabled:cursor-not-allowed disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#332c30]/35 focus-visible:ring-offset-1 focus:border-[#332c30]/50";
   const parsedGuestCount = Number.parseInt(form.guestCount, 10);
   const additionalGuestsCount =
     form.attendance === "yes" && Number.isFinite(parsedGuestCount)
       ? Math.max(0, parsedGuestCount - 1)
       : 0;
-  const guestCountOptions = useMemo(
-    () => {
-      if (!form.attendance) {
-        return [
-          <option value="" key="guest-count-placeholder">
-            {""}
-          </option>,
-        ];
-      }
-
-      if (form.attendance === "no") {
-        return [
-          <option value="0" key="guest-count-0">
-            0
-          </option>,
-        ];
-      }
-
-      return [
-        <option value="" key="guest-count-placeholder">
-          {""}
-        </option>,
-        ...Array.from({ length: maxGuestOptions }, (_, index) => {
-          const value = index + 1;
-          return (
-            <option value={String(value)} key={`guest-count-${value}`}>
-              {value}
-            </option>
-          );
-        }),
-      ];
-    },
-    [form.attendance, maxGuestOptions]
+  const attendanceOptions = useMemo<FormSelectOption[]>(
+    () => [
+      { value: "", label: "" },
+      { value: "yes", label: t.yesOption },
+      { value: "no", label: t.noOption },
+    ],
+    [t.noOption, t.yesOption]
   );
+
+  const guestCountOptions = useMemo((): FormSelectOption[] => {
+    if (!form.attendance) {
+      return [{ value: "", label: "" }];
+    }
+
+    if (form.attendance === "no") {
+      return [{ value: "0", label: "0" }];
+    }
+
+    return [
+      { value: "", label: "" },
+      ...Array.from({ length: maxGuestOptions }, (_, index) => {
+        const guestValue = index + 1;
+        return { value: String(guestValue), label: String(guestValue) };
+      }),
+    ];
+  }, [form.attendance, maxGuestOptions]);
 
   const getValidationErrorCode = (field: string): FieldErrorCode => {
     switch (field) {
@@ -444,7 +437,7 @@ export function RsvpForm({
             </span>
           </span>
           <input
-            className={`${getFieldControlClass(Boolean(errors.inviteCode))} lining-nums tabular-nums uppercase tracking-wide`}
+            className={`${getFieldControlClass(Boolean(errors.inviteCode))} uppercase`}
             value={form.inviteCode}
             onChange={(e) => setForm((prev) => ({ ...prev, inviteCode: e.target.value.toUpperCase() }))}
             autoCapitalize="characters"
@@ -495,11 +488,10 @@ export function RsvpForm({
               *
             </span>
           </span>
-          <select
+          <FormSelect
             className={getFieldControlClass(Boolean(errors.attendance))}
             value={form.attendance}
-            onChange={(e) => {
-              const attendance = e.target.value;
+            onChange={(attendance) => {
               setForm((prev) => ({
                 ...prev,
                 attendance,
@@ -513,12 +505,9 @@ export function RsvpForm({
                       : "",
               }));
             }}
+            options={attendanceOptions}
             aria-invalid={Boolean(errors.attendance)}
-          >
-            <option value="">{""}</option>
-            <option value="yes">{t.yesOption}</option>
-            <option value="no">{t.noOption}</option>
-          </select>
+          />
           {errors.attendance ? (
             <span className={errorTextClass} role="alert">
               {getFieldErrorMessage(errors.attendance)}
@@ -533,15 +522,14 @@ export function RsvpForm({
               *
             </span>
           </span>
-          <select
+          <FormSelect
             className={getFieldControlClass(Boolean(errors.guestCount))}
             value={form.guestCount}
-            onChange={(e) => setForm((prev) => ({ ...prev, guestCount: e.target.value }))}
+            onChange={(guestCount) => setForm((prev) => ({ ...prev, guestCount }))}
+            options={guestCountOptions}
             disabled={form.attendance !== "yes" || !inviteLookup}
             aria-invalid={Boolean(errors.guestCount)}
-          >
-            {guestCountOptions}
-          </select>
+          />
           {errors.guestCount ? (
             <span className={errorTextClass} role="alert">
               {getFieldErrorMessage(errors.guestCount)}
