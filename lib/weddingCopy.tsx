@@ -74,15 +74,24 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
   },
   fr: {
     coupleNames: "Georges & Christella",
-    heroKicker: "Nous nous marions",
+    // heroKicker: "Nous nous marions",
+    heroKicker: "Tunafunga ndoa",
     heroDate: "15 août 2026",
+    // announcement: (
+    //   <>
+    //     C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
+    //     <strong>Rosa Marie Ngo Um Epse Boum</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
+    //     <strong>Joze Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
+    //     <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <br />
+    //     <strong>15 août 2026</strong>.
+    //   </>
+    // ),
     announcement: (
       <>
-        C&apos;est avec une immense joie que les familles de <strong>Samuel Simon Boum</strong> et{" "}
-        <strong>Rosa Marie Ngo Um Epse Boum</strong>, ainsi qu&apos;<strong>Anastase Nzobonimpa</strong> et{" "}
-        <strong>Joze Tuyisenge</strong>, ont l&apos;honneur de vous convier au mariage de leurs enfants,{" "}
-        <strong>Georges Anthony Boum</strong> et <strong>Christella Emerusenge</strong>, qui sera célébré le <br />
-        <strong>15 août 2026</strong>.
+        Ni furaha tele kwamba familia za <strong>Samuel Simon Boum</strong> na <strong>Rosa Marie Ngo Um Epse Boum</strong>, 
+        pamoja na <strong>Anastase Nzobonimpa</strong> na <strong>Joze Tuyisenge</strong>, zimepata heshima ya kukualika kwenye ndoa ya watoto wao, {" "}  
+        <strong>Georges Anthony Boum</strong> na <strong>Christella Emerusenge</strong>, ambayo itaadhimishwa <br />
+        <strong>Agosti 15, 2026</strong>.
       </>
     ),
     scheduleTitle: "PROGRAMME DE LA JOURNÉE",
