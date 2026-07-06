@@ -61,8 +61,8 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
     ],
     closingMessage: (
       <>
-        We will be delighted to celebrate this moment with you. Please confirm your attendance below before{" "}
-        <strong>July 1, 2026</strong>.
+        We will be delighted to celebrate this moment with you. Please confirm your attendance below.
+        {/* Deadline (expired): before <strong>July 1, 2026</strong>. */}
       </>
     ),
     maxPeoplePerInvitation:
@@ -104,8 +104,8 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
     ],
     closingMessage: (
       <>
-        Nous serons ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous avant le{" "}
-        <strong>1er juillet 2026</strong>.
+        Nous serons ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.
+        {/* Date limite (expirée) : avant le <strong>1er juillet 2026</strong>. */}
       </>
     ),
     maxPeoplePerInvitation:
