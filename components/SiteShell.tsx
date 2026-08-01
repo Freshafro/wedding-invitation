@@ -18,6 +18,10 @@ export function SiteShell({
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
+  useEffect(() => {
     const codeParam = searchParams.get("code");
     if (!codeParam) {
       return;

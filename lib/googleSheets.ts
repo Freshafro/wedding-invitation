@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import type { RsvpInput } from "@/lib/validation";
+import { parseSeatingRows, type SeatingEntry } from "@/lib/seating";
 
 export type InviteRecord = {
   inviteCode: string;
@@ -70,6 +71,56 @@ export async function getInviteByCode(inviteCode: string): Promise<InviteRecord 
   return null;
 }
 
+const SEATING_CACHE_TTL_MS = 60_000;
+
+let seatingCache: { entries: SeatingEntry[]; fetchedAt: number } | null = null;
+let seatingInFlight: Promise<SeatingEntry[]> | null = null;
+
+async function fetchSeatingRoster(): Promise<SeatingEntry[]> {
+  const spreadsheetId = getEnv("GOOGLE_SHEET_ID");
+  const range = process.env.GOOGLE_SEATING_RANGE ?? "Seating!A:C";
+
+  const sheets = getSheetsClient();
+  const response = await sheets.spreadsheets.values.get({ spreadsheetId, range });
+
+  return parseSeatingRows(response.data.values ?? []);
+}
+
+/**
+ * Cached because ~150 guests scan within the same few minutes on arrival. Without
+ * this every scan would be a Sheets API call, which is both slow at the door and
+ * a good way to hit the per-minute read quota. In-flight requests share one fetch
+ * so a cold start under load doesn't fan out into dozens of identical calls.
+ */
+export async function getSeatingRoster(): Promise<SeatingEntry[]> {
+  if (seatingCache && Date.now() - seatingCache.fetchedAt < SEATING_CACHE_TTL_MS) {
+    return seatingCache.entries;
+  }
+
+  if (seatingInFlight) {
+    return seatingInFlight;
+  }
+
+  seatingInFlight = fetchSeatingRoster()
+    .then((entries) => {
+      seatingCache = { entries, fetchedAt: Date.now() };
+      return entries;
+    })
+    .finally(() => {
+      seatingInFlight = null;
+    });
+
+  try {
+    return await seatingInFlight;
+  } catch (error) {
+    // Serve stale data rather than failing a guest standing at the entrance.
+    if (seatingCache) {
+      return seatingCache.entries;
+    }
+    throw error;
+  }
+}
+
 export async function appendRsvpRow(data: RsvpInput, invite: InviteRecord): Promise<void> {
   const spreadsheetId = getEnv("GOOGLE_SHEET_ID");
   const range = process.env.GOOGLE_SHEET_RANGE ?? "RSVP!A:I";
@@ -79,7 +130,7 @@ export async function appendRsvpRow(data: RsvpInput, invite: InviteRecord): Prom
   await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,
-    valueInputOption: "USER_ENTERED",
+    valueInputOption: "RAW",
     requestBody: {
       values: [
         [

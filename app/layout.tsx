@@ -27,7 +27,7 @@ const bodoniModa = Bodoni_Moda({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 const shareTitle = "Georges & Christella | Mariage & RSVP";
 const shareDescription = "Site de mariage et RSVP de Georges Anthony Boum et Christella Emerusenge.";
-const shareImagePath = "/4R4A4421.jpg";
+const shareImagePath = "/4R4A4423.jpg";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cormorantGaramond.variable} ${bodoniModa.variable} antialiased`}
       >

@@ -56,6 +56,7 @@ export function FormSelect({
       <button
         type="button"
         disabled={disabled}
+        role="combobox"
         aria-invalid={ariaInvalid}
         aria-haspopup="listbox"
         aria-expanded={open}

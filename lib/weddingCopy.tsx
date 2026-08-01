@@ -19,6 +19,8 @@ type WeddingCopy = {
   scheduleThemeBody: string;
   openMap: string;
   heroPhotoAlts: string[];
+  seatingTitle: string;
+  seatingIntro: string;
   closingMessage: ReactNode;
   maxPeoplePerInvitation: string;
   nextToSchedule: string;
@@ -59,6 +61,8 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
       "Georges and Christella portrait",
       "Georges and Christella candid moment",
     ],
+    seatingTitle: "Find your table",
+    seatingIntro: "Welcome! Enter your name below and we will show you where you are seated.",
     closingMessage: (
       <>
         We will be delighted to celebrate this moment with you. Please confirm your attendance below.
@@ -102,6 +106,9 @@ const weddingCopy: Record<Locale, WeddingCopy> = {
       "Portrait de Georges et Christella",
       "Moment spontané de Georges et Christella",
     ],
+    seatingTitle: "Trouvez votre table",
+    seatingIntro:
+      "Bienvenue ! Saisissez votre nom ci-dessous et nous vous indiquerons votre place.",
     closingMessage: (
       <>
         Nous serons ravis de célébrer ce moment avec vous. Merci de confirmer votre présence ci-dessous.

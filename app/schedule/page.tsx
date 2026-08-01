@@ -11,7 +11,6 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const bottomImagePaths = ["/4R4A4328.jpg", "/4R4A4319.jpg"];
 export default async function SchedulePage({
   searchParams,
 }: {
