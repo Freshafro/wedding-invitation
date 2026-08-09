@@ -16,6 +16,21 @@ type Outcome = {
   failed: boolean;
 };
 
+/**
+ * The table label sits in a display-sized slot sized for "7". A word like
+ * "Chrysanthemes" at that size overflows a phone, and a single word cannot wrap
+ * on its own, so the size steps down with length and long words are allowed to
+ * break mid-word as a last resort.
+ */
+function tableLabelClasses(label: string): string {
+  const length = label.trim().length;
+
+  if (length <= 3) return "text-7xl leading-none sm:text-8xl";
+  if (length <= 6) return "text-5xl leading-tight sm:text-6xl";
+  if (length <= 14) return "text-4xl leading-tight sm:text-5xl";
+  return "text-3xl leading-snug sm:text-4xl";
+}
+
 export function SeatingLookup({ locale = "en" }: { locale?: Locale }) {
   const [query, setQuery] = useState("");
   const [outcome, setOutcome] = useState<Outcome | null>(null);
@@ -113,7 +128,11 @@ export function SeatingLookup({ locale = "en" }: { locale?: Locale }) {
 
         <div className="space-y-2 border-t border-[var(--border-muted)] pt-6">
           <p className="text-sm font-semibold uppercase tracking-[0.12em]">{t.tableLabel}</p>
-          <p className="font-display text-7xl leading-none lining-nums tabular-nums sm:text-8xl">
+          <p
+            className={`font-display lining-nums tabular-nums [overflow-wrap:anywhere] ${tableLabelClasses(
+              selected.tableNumber
+            )}`}
+          >
             {selected.tableNumber}
           </p>
           {selected.tableName ? (
