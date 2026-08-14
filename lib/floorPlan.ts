@@ -40,17 +40,19 @@ export const ROOM = {
 } as const;
 
 /**
- *   LEFT BLOCK (bar side)          RIGHT BLOCK (entrance side)
- *   outer  mid   inner             inner  mid   outer
- *     -     15    13                 1     7     4
- *     -     14    17                 2     6    10
- *    19     20    18                 3     8    11
- *    21     24    16                 5     9    12
- *    25     23    22
+ *   LEFT BLOCK (bar side)            RIGHT BLOCK (entrance side)
+ *     outer: 19 21 25 23              inner: 1 2 3 5
+ *     mid:   15 14 20 24 22           mid:   7 6 8 9
+ *     inner: 13 17 18 16              outer: 4 10 11 12
  *
- * The two blank slots are tables struck off the venue's plan. Positions come from
- * a uniform grid rather than per-table tracing: the plan was photographed at an
- * angle, and eyeballed coordinates carried enough jitter to look sloppy on screen.
+ * Middle columns sit half a row off their neighbours. On the left that pairs the
+ * middle and inner columns, with the outer column offset from both: it was moved
+ * up toward the bar when the bottom row shifted, rather than gaining a table at
+ * the far end.
+ *
+ * Positions come from a uniform grid rather than per-table tracing: the plan was
+ * photographed at an angle, and eyeballed coordinates carried enough jitter to
+ * look sloppy on screen.
  */
 const COLUMN_PITCH = 8;
 const ROW_PITCH = 8;
@@ -83,24 +85,25 @@ export const FLOOR_PLAN_TABLES: FloorPlanTable[] = [
   { number: 11, id: "Pays-Bas", x: RIGHT_BLOCK_X[2], y: row(2) },
   { number: 12, id: "Norvège", x: RIGHT_BLOCK_X[2], y: row(3) },
 
-  // Left block, inner column.
-  { number: 13, id: "Cap-Vert", x: LEFT_BLOCK_X[2], y: row(0) },
-  { number: 17, id: "Suède", x: LEFT_BLOCK_X[2], y: row(1) },
-  { number: 18, id: "Espagne", x: LEFT_BLOCK_X[2], y: row(2) },
-  { number: 16, id: "Sénégal", x: LEFT_BLOCK_X[2], y: row(3) },
-  { number: 22, id: "Ghana", x: LEFT_BLOCK_X[2], y: row(4) },
+  // Left block, inner column - shifted half a row down, onto the middle column's
+  // line.
+  { number: 13, id: "Cap-Vert", x: LEFT_BLOCK_X[2], y: row(0, true) },
+  { number: 17, id: "Suède", x: LEFT_BLOCK_X[2], y: row(1, true) },
+  { number: 18, id: "Espagne", x: LEFT_BLOCK_X[2], y: row(2, true) },
+  { number: 16, id: "Sénégal", x: LEFT_BLOCK_X[2], y: row(3, true) },
 
-  // Left block, middle column - staggered half a row down.
+  // Left block, middle column.
   { number: 15, id: "Japon", x: LEFT_BLOCK_X[1], y: row(0, true) },
   { number: 14, id: "Congo", x: LEFT_BLOCK_X[1], y: row(1, true) },
   { number: 20, id: "Autriche", x: LEFT_BLOCK_X[1], y: row(2, true) },
   { number: 24, id: "Angleterre", x: LEFT_BLOCK_X[1], y: row(3, true) },
-  { number: 23, id: "Corée du Sud", x: LEFT_BLOCK_X[1], y: row(4, true) },
+  { number: 22, id: "Ghana", x: LEFT_BLOCK_X[1], y: row(4, true) },
 
-  // Left block, outer column - starts at the third row.
-  { number: 19, id: "Brésil", x: LEFT_BLOCK_X[0], y: row(2) },
-  { number: 21, id: "Canada", x: LEFT_BLOCK_X[0], y: row(3) },
-  { number: 25, id: "Haïti", x: LEFT_BLOCK_X[0], y: row(4) },
+  // Left block, outer column - moved one row up toward the bar.
+  { number: 19, id: "Brésil", x: LEFT_BLOCK_X[0], y: row(1) },
+  { number: 21, id: "Canada", x: LEFT_BLOCK_X[0], y: row(2) },
+  { number: 25, id: "Haïti", x: LEFT_BLOCK_X[0], y: row(3) },
+  { number: 23, id: "Corée du Sud", x: LEFT_BLOCK_X[0], y: row(4) },
 ];
 
 export const FLOOR_PLAN_FIXTURES: FloorPlanFixture[] = [

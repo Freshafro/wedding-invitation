@@ -34,8 +34,11 @@ export function SiteShell({
 
   }, [searchParams]);
 
+  // The mobile nav is fixed to the bottom and ~62px tall before the safe-area
+  // inset, so pb-10 did not clear it and the seating result card ran underneath.
+  // The inset is added on top so notched phones get the same clearance as flat ones.
   return (
-    <div className="pb-10 lg:pt-14 lg:pb-10">
+    <div className="pb-[calc(env(safe-area-inset-bottom)+5.5rem)] lg:pt-14 lg:pb-10">
       {children}
       <FloatingPageNav locale={locale} />
     </div>
