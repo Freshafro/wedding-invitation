@@ -12,6 +12,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { normalizeName, parseSeatingRows, searchSeating, type SeatingEntry } from "../lib/seating.ts";
+import { FLOOR_PLAN_TABLES, ROOM, findFloorPlanTable } from "../lib/floorPlan.ts";
 
 const projectDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(import.meta.url);
@@ -115,6 +116,70 @@ if (duplicates.length > 0) {
 console.log(`\nFirst names shared by more than one guest: ${sharedFirstNames}`);
 console.log(`Distinct tables: ${new Set(roster.map((entry) => entry.tableNumber)).size}`);
 
-if (unfindable.length > 0) {
+// A table with no matching circle drops the map silently - safe, but it should
+// never be a surprise on the day.
+console.log("\n--- floor plan ---");
+
+const sheetTables = new Map<string, string | undefined>();
+for (const entry of roster) {
+  if (!sheetTables.has(entry.tableNumber)) {
+    sheetTables.set(entry.tableNumber, entry.tableName);
+  }
+}
+
+const unmapped = [...sheetTables.entries()].filter(
+  ([table, number]) => findFloorPlanTable(table, number) === null
+);
+const planIds = new Set(FLOOR_PLAN_TABLES.map((table) => normalizeName(table.id)));
+const orphaned = FLOOR_PLAN_TABLES.filter(
+  (table) => ![...sheetTables.keys()].some((sheet) => normalizeName(sheet) === normalizeName(table.id))
+);
+
+console.log(`Tables in sheet:      ${sheetTables.size}`);
+console.log(`Tables on floor plan: ${FLOOR_PLAN_TABLES.length}`);
+console.log(`Every table maps to a spot on the plan: ${unmapped.length === 0 ? "YES" : "NO"}`);
+
+if (unmapped.length > 0) {
+  console.log("\nNo map will be shown for these tables (add them to lib/floorPlan.ts):");
+  unmapped.forEach(([table, number]) => console.log(`   ${table}  (number: ${number ?? "-"})`));
+}
+if (orphaned.length > 0) {
+  console.log(`\n${orphaned.length} table(s) on the plan that nobody is seated at:`);
+  orphaned.forEach((table) => console.log(`   ${table.number}. ${table.id}`));
+}
+
+const collisions: string[] = [];
+for (let i = 0; i < FLOOR_PLAN_TABLES.length; i += 1) {
+  for (let j = i + 1; j < FLOOR_PLAN_TABLES.length; j += 1) {
+    const a = FLOOR_PLAN_TABLES[i];
+    const b = FLOOR_PLAN_TABLES[j];
+    const gap = Math.hypot(a.x - b.x, a.y - b.y) - ROOM.tableRadius * 2;
+    if (gap < 0) {
+      collisions.push(
+        `   ${a.number} (${a.id}) and ${b.number} (${b.id}) overlap by ${Math.abs(gap).toFixed(2)}`
+      );
+    }
+  }
+}
+console.log(`No two tables overlap on the map: ${collisions.length === 0 ? "YES" : "NO"}`);
+collisions.forEach((line) => console.log(line));
+
+const outOfBounds = FLOOR_PLAN_TABLES.filter(
+  (table) =>
+    table.x - ROOM.tableRadius < 0 ||
+    table.x + ROOM.tableRadius > ROOM.width ||
+    table.y - ROOM.tableRadius < 0 ||
+    table.y + ROOM.tableRadius > ROOM.height
+);
+if (outOfBounds.length > 0) {
+  console.log(`\n${outOfBounds.length} table(s) fall outside the map and will be clipped:`);
+  outOfBounds.forEach((table) => console.log(`   ${table.number}. ${table.id}`));
+}
+
+if (planIds.size !== FLOOR_PLAN_TABLES.length) {
+  console.log("\nWARNING: lib/floorPlan.ts contains duplicate table names.");
+}
+
+if (unfindable.length > 0 || unmapped.length > 0) {
   process.exitCode = 1;
 }

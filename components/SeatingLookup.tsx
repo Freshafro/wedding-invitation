@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { RoomMap } from "@/components/RoomMap";
 import { SEATING_MIN_QUERY_LENGTH, normalizeName, type SeatingEntry } from "@/lib/seating";
 
 type Locale = "en" | "fr";
@@ -138,6 +139,14 @@ export function SeatingLookup({ locale = "en" }: { locale?: Locale }) {
           {selected.tableName ? (
             <p className="font-display text-xl leading-8 sm:text-2xl">{selected.tableName}</p>
           ) : null}
+        </div>
+
+        <div className="border-t border-[var(--border-muted)] pt-6 text-left">
+          <RoomMap
+            activeTableId={selected.tableNumber}
+            activeTableNumber={selected.tableName}
+            locale={locale}
+          />
         </div>
 
         <button
